@@ -1,5 +1,8 @@
 import React from 'react'
 
+import Header from './Header'
+import Board from './Board'
+
 class App extends React.Component {
     constructor(props){
         super(props);
@@ -33,7 +36,7 @@ class App extends React.Component {
     //     <div className="container">
     //         <div className="game">
     //             <Header>
-    //             <Game>
+    //             <Board>
     //         </div>
     //     </div>
     // )
