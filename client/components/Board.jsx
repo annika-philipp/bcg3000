@@ -1,4 +1,6 @@
 import React from 'react'
+import Score from './Score'
+import Questions from './Questions'
 
 
 // stateful as well
