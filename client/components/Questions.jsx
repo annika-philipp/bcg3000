@@ -2,10 +2,11 @@ import React from 'react'
 
 const Questions = (props) => {
 
-    return 
+    return (
     <div className="questions">
     <p>questions</p>
     </div>
+    )
   }
 
 

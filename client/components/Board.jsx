@@ -3,14 +3,28 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Score from './Score'
+import Questions from './Questions'
 
-function Board () {
-    return (
-    <div>
-        <Score />
-    </div>
-    )
-    
+class Board extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+
+        }
+
+    }
+    render () {
+
+        return (
+        <div>
+            <Score />
+            <Questions />
+        </div>
+        )
+        
+    }
+
 }
 
 export default Board
