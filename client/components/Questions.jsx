@@ -4,10 +4,9 @@ const Questions = (props) => {
 
     return 
     <div className="questions">
-      {props.question}
+    <p>questions</p>
     </div>
   }
 
-  // is this really props question?! 
 
 export default Questions

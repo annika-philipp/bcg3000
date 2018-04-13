@@ -1,43 +1,24 @@
 import React from 'react'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import ReactDOM from 'react-dom'
+
 import Score from './Score'
-import Questions from './Questions'
 
-
-// stateful as well
-
-class Board extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            //stuff like questions: '',
-            //questionID: 1,
-            //answer1: ,
-            //answer2: /
-            //or answers: [] ?
-        }
-
-        //this = this .bind(this)
-    }
-
-    //render Questions?
-
-    //render Answers?
-
-    //click buttons?
-
-    render(){
-        return (
-            <div key={this.state.questionID}>
-                <Questions question={which question} id={which id /}>
-                <Answer answers={which answers} />
-            </div>    
-        )
-
-    }
- 
-
+function Board () {
+    return (
+    <div>
+        <Score />
+    </div>
+    )
+    
 }
 
-
 export default Board
+
+
+
+
+
+
+
+

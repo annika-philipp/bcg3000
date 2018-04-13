@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Score = (props) => {
-    return 
+    return (
         <div className="score">
-            {props.score.value}
+        <h1>Score</h1>
         </div>
+    )
 }
-// not 100% sure if this is sufficient - come back to this later
 export default Score
