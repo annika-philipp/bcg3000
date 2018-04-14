@@ -15,7 +15,7 @@ class Board extends React.Component {
         this.state = {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
-            questionsId: 1,
+            questionId: 1,
             question: 'Day 1 of Bootcamp and you feel....',
             answers: ['Awesome!', 'Frikkin\' Awesome']
             //pause: false -- maybe
@@ -32,7 +32,7 @@ class Board extends React.Component {
     }
 
     //this will somehow have to come from my seeds and api
-    showQuestion (id, question) {
+    getQuestion (id, question) {
         this.setState({
             questionId: questionID + 1,
             question: testquestions.question
@@ -40,7 +40,7 @@ class Board extends React.Component {
     }
 
     //this is semi-pseudocoded
-    showAnswers (answer1, answer2) {
+    getAnswers (answer1, answer2) {
         const answers = this.state.answers
             answers.push(answer1)
             answers.push(answer2)
