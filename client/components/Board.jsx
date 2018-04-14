@@ -6,6 +6,7 @@ import Score from './Score'
 import Questions from './Questions'
 import Answers from './Answers'
 import testquestions from '../../public/data/testquestions'
+import testanswers from '../../public/data/testanswers'
 
 class Board extends React.Component {
     constructor(props) {
@@ -49,7 +50,15 @@ class Board extends React.Component {
 
 
     updateScore(score){
-      console.log(Hello)  
+      const totalscore = this.state.totalscore
+      // if button pressed is answer[0] then totalscore += answer[0]score
+      //if button pressed is answer[1] then total score += answer[1].score 
+      //totalscore += testanswers.score  
+      //this.setState({score})
+    }
+
+    componentDidMount() {
+        //what needs to go in here?
     }
 
 
@@ -57,10 +66,10 @@ class Board extends React.Component {
        const {totalscore, question, answers} = this.state
        console.log(totalscore, question, answers)
 
-       if (questionsId == 13) return 
+    //    if (questionsId == 13) return 
 
         return (
-        <div className="game">
+        <div className="game" key="this.state.questionId">
             <Score totalscore={totalscore}/>
             <Questions question={question}/>
             <Answers answers={answers}/>

@@ -24483,6 +24483,10 @@ var _testquestions = __webpack_require__(89);
 
 var _testquestions2 = _interopRequireDefault(_testquestions);
 
+var _testanswers = __webpack_require__(90);
+
+var _testanswers2 = _interopRequireDefault(_testanswers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24542,7 +24546,16 @@ var Board = function (_React$Component) {
     }, {
         key: 'updateScore',
         value: function updateScore(score) {
-            console.log(Hello);
+            var totalscore = this.state.totalscore;
+            // if button pressed is answer[0] then totalscore += answer[0]score
+            //if button pressed is answer[1] then total score += answer[1].score 
+            //totalscore += testanswers.score  
+            //this.setState({score})
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            //what needs to go in here?
         }
     }, {
         key: 'render',
@@ -24554,11 +24567,11 @@ var Board = function (_React$Component) {
 
             console.log(totalscore, question, answers);
 
-            if (questionsId == 13) return;
+            //    if (questionsId == 13) return 
 
             return _react2.default.createElement(
                 'div',
-                { className: 'game' },
+                { className: 'game', key: 'this.state.questionId' },
                 _react2.default.createElement(_Score2.default, { totalscore: totalscore }),
                 _react2.default.createElement(_Questions2.default, { question: question }),
                 _react2.default.createElement(_Answers2.default, { answers: answers })
@@ -24591,6 +24604,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var testquestions = [{ id: 1, question: "First day of bootcamp, you feel...", week: 1 }, { id: 2, question: "function ageOneYear(obj) { \n //adds 1 to the age property of obj \n}", week: 1 }, { id: 3, question: "Someone says 'handlebars' - you think...", week: 2 }, { id: 4, question: "The 4 most common HTTP methods are...", week: 2 }, { id: 5, question: "You hear Ming talk about dogs, cats and cows", week: 3 }, { id: 6, question: "Promises...", week: 3 }];
 
 exports.default = testquestions;
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var testanswers = [{ id: 1, answer: 'excited!', question_id: 1, score: +40 }, { id: 2, answer: 'awesome!', question_id: 1, score: +40 }, { id: 3, answer: 'return obj[age]++', question_id: 2, score: -10 }, { id: 4, answer: 'return obj.age++', question_id: 2, score: +10 }, { id: 5, answer: 'Views', question_id: 3, score: +10 }, { id: 6, answer: 'Time to shave!', question_id: 3, score: -10 }, { id: 7, answer: 'GET POST PUT DELETE', question_id: 4, score: +10 }, { id: 8, answer: 'GET POST PUT ERASE', question_id: 4, score: -10 }, { id: 9, answer: 'Yoga time!', question_id: 5, score: +10 }, { id: 10, answer: "ming.animals = ['cats', 'dogs', 'cows']", question_id: 5, score: +5 }, { id: 11, answer: 'mainly empty, mostly broken...', question_id: 6, score: -20 }, { id: 12, answer: '.then(doSomething) \n.catch(error and deal with it)', question_id: 6, score: +10 }];
+
+exports.default = testanswers;
 
 /***/ })
 /******/ ]);
