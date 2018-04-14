@@ -3,7 +3,7 @@ import React from 'react'
 const Score = ({score}) => {
     return (
         <div className="score">
-        <h1>score: {score}</h1>
+        <h2>score: {score}</h2>
         </div>
     )
 }

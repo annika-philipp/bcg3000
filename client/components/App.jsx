@@ -12,8 +12,10 @@ import Answers from './Answers'
 const App = () => {
     return (
     <Router>
-        <div>
-            <h1>BCG 3000</h1>
+        <div className="container">
+            <div className="row">
+                <h1>BCG 3000</h1>
+            </div>    
             <Route exact path = '/' component = {Welcome} />
             <Route exact path = '/bcg3000' component = {Board} />
         </div>

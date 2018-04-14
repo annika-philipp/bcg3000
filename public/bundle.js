@@ -2554,7 +2554,7 @@ var Score = function Score(_ref) {
         "div",
         { className: "score" },
         _react2.default.createElement(
-            "h1",
+            "h2",
             null,
             "score: ",
             score
@@ -2571,7 +2571,7 @@ exports.default = Score;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(0);
@@ -2581,18 +2581,18 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Questions = function Questions(_ref) {
-    var question = _ref.question;
+  var question = _ref.question;
 
 
-    return _react2.default.createElement(
-        "div",
-        { className: "questions" },
-        _react2.default.createElement(
-            "p",
-            null,
-            question
-        )
-    );
+  return _react2.default.createElement(
+    "div",
+    { className: "screen" },
+    _react2.default.createElement(
+      "div",
+      { className: "question" },
+      question
+    )
+  );
 };
 
 exports.default = Questions;
@@ -2619,7 +2619,7 @@ var Answers = function Answers(_ref) {
 
     return _react2.default.createElement(
         "div",
-        { className: "score" },
+        { className: "answers" },
         _react2.default.createElement(
             "button",
             null,
@@ -19966,11 +19966,15 @@ var App = function App() {
         null,
         _react2.default.createElement(
             'div',
-            null,
+            { className: 'container' },
             _react2.default.createElement(
-                'h1',
-                null,
-                'BCG 3000'
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'BCG 3000'
+                )
             ),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Welcome2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/bcg3000', component: _Board2.default })
@@ -24517,7 +24521,7 @@ var Board = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'game' },
                 _react2.default.createElement(_Score2.default, { score: score }),
                 _react2.default.createElement(_Questions2.default, { question: question }),
                 _react2.default.createElement(_Answers2.default, { answers: answers })

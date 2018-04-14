@@ -28,7 +28,7 @@ class Board extends React.Component {
        const {score, question, answers} = this.state
 
         return (
-        <div>
+        <div className="game">
             <Score score={score}/>
             <Questions question={question}/>
             <Answers answers={answers}/>
