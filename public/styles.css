@@ -9,7 +9,8 @@ body {
     height: 900px;
     justify-content: center;
     margin: 0 auto;
-    border: .1em dotted red
+    border: .1em dotted red;
+
 }
 .game {
     width: 80%;
@@ -45,11 +46,23 @@ body {
 
 }
 
-button {
+/* button {
     border: .25em solid darkgray;
     border-radius: .3em;
     height: 100px;
     margin-bottom: .5em
+
+} */
+
+.button {
+    width: 80%;
+    height: 100px;
+    background-color: darkgray;
+    border: .25em solid darkgray;
+    border-radius: .3em;
+    font-size: 10px;
+    text-transform: none;
+    margin: .5em auto
 
 }
 
@@ -63,30 +76,55 @@ h1 {
     font-size: 3em;
 
 }
-.answers {
 
+h2 {
+    font-size: 1em;
 }
-.button {
+
+.welcome {
     width: 80%;
+    height: 300px;
+    margin: 20px auto 20px auto;
+    background-color: rgb(54, 52, 52);
+    border: .4em solid goldenrod;
+    border-radius: .3em;
+    color: white;
+    text-align: center;
+    font-family: 'Geo', serif;
+    font-size: 3em;
+    align-items: center;
+}
+
+.question {
+    font-size: 2em
+}
+
+/* .startbutton {
+    width: 50%;
     height: 80px;
     background-color: darkgray;
     border: .3em solid goldenrod;
     border-radius: .15em;
-    font-size: 10px;
+    font-size: .8em;
     text-transform: none;
+    margin: 0 auto;
 
-}
+} */
 
+/* 
 @media screen and (max-width: 500px){
+    .container {
+        width: 100%
+    }
+
     .game {
       width: 100%;
     }
 
-    /* #screen {
-        font-size: smaller em
-    }
+    /* .question {
+        font-size: 3em
+    } */
 
-    .button {
+    /* .button {
         font-size: smaller em
     } */
-  }

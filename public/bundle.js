@@ -2590,7 +2590,11 @@ var Questions = function Questions(_ref) {
     _react2.default.createElement(
       "div",
       { className: "question" },
-      question
+      _react2.default.createElement(
+        "h3",
+        null,
+        question
+      )
     )
   );
 };
@@ -2622,12 +2626,12 @@ var Answers = function Answers(_ref) {
         { className: "answers" },
         _react2.default.createElement(
             "button",
-            null,
+            { className: "button" },
             answers[0]
         ),
         _react2.default.createElement(
             "button",
-            null,
+            { className: "button" },
             answers[1]
         )
     );
@@ -24407,38 +24411,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Welcome = function Welcome() {
     return _react2.default.createElement(
         'div',
-        { className: 'Welcome' },
+        { className: 'container' },
         _react2.default.createElement(
-            'h2',
-            null,
-            'Welcome'
-        ),
-        _react2.default.createElement(
-            'h2',
-            null,
-            'to'
-        ),
-        _react2.default.createElement(
-            'h2',
-            null,
-            '6 weeks'
-        ),
-        _react2.default.createElement(
-            'h2',
-            null,
-            'of'
-        ),
-        _react2.default.createElement(
-            'h2',
-            null,
-            'fun(ctions)'
+            'div',
+            { className: 'welcome' },
+            _react2.default.createElement(
+                'div',
+                { className: 'welcometext' },
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Welcome to 6 weeks'
+                ),
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'of fun(ctions)'
+                )
+            )
         ),
         _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/bcg3000' },
             _react2.default.createElement(
                 'button',
-                { type: 'button' },
+                { className: 'button' },
                 'Start Game'
             )
         )
