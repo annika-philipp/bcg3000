@@ -2548,7 +2548,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Score = function Score(_ref) {
-    var score = _ref.score;
+    var totalscore = _ref.totalscore;
 
     return _react2.default.createElement(
         "div",
@@ -2557,7 +2557,7 @@ var Score = function Score(_ref) {
             "h2",
             null,
             "score: ",
-            score
+            totalscore
         )
     );
 };
@@ -2626,12 +2626,12 @@ var Answers = function Answers(_ref) {
         { className: "answers" },
         _react2.default.createElement(
             "button",
-            { className: "button" },
+            { onClick: updateScore, className: "button" },
             answers[0]
         ),
         _react2.default.createElement(
             "button",
-            { className: "button" },
+            { onClick: updateScore, className: "button" },
             answers[1]
         )
     );
@@ -24479,6 +24479,10 @@ var _Answers = __webpack_require__(41);
 
 var _Answers2 = _interopRequireDefault(_Answers);
 
+var _testquestions = __webpack_require__(89);
+
+var _testquestions2 = _interopRequireDefault(_testquestions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24497,29 +24501,65 @@ var Board = function (_React$Component) {
 
         _this.state = {
             //these are all the parts that will be changed as the game is played
-            score: 1,
+            totalscore: 1,
             questionsId: 1,
             question: 'Day 1 of Bootcamp and you feel....',
             answers: ['Awesome!', 'Frikkin\' Awesome']
+            //pause: false -- maybe
+
 
         };
+
+        _this.showQuestion = _this.showQuestion.bind(_this);
+        _this.clickButton = _this.clickButton.bind(_this);
+        _this.updateScore = _this.updateScore.bind(_this);
 
         return _this;
     }
 
+    //this will somehow have to come from my seeds and api
+
+
     _createClass(Board, [{
+        key: 'showQuestion',
+        value: function showQuestion(id, question) {
+            this.setState({
+                questionId: questionID + 1,
+                question: _testquestions2.default.question
+            });
+        }
+
+        //this is semi-pseudocoded
+
+    }, {
+        key: 'showAnswers',
+        value: function showAnswers(answer1, answer2) {
+            var answers = this.state.answers;
+            answers.push(answer1);
+            answers.push(answer2);
+            this.setState({ answers: answers });
+        }
+    }, {
+        key: 'updateScore',
+        value: function updateScore(score) {
+            console.log(Hello);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,
-                score = _state.score,
+                totalscore = _state.totalscore,
                 question = _state.question,
                 answers = _state.answers;
 
+            console.log(totalscore, question, answers);
+
+            if (questionsId == 13) return;
 
             return _react2.default.createElement(
                 'div',
                 { className: 'game' },
-                _react2.default.createElement(_Score2.default, { score: score }),
+                _react2.default.createElement(_Score2.default, { totalscore: totalscore }),
                 _react2.default.createElement(_Questions2.default, { question: question }),
                 _react2.default.createElement(_Answers2.default, { answers: answers })
             );
@@ -24530,6 +24570,27 @@ var Board = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Board;
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var testquestions = [{ id: 1, question: "First day of bootcamp, you feel...", week: 1 }, { id: 2, question: "function ageOneYear(obj) { \n //adds 1 to the age property of obj \n}", week: 1 }, { id: 3, question: "Someone says 'handlebars' - you think...", week: 2 }, { id: 4, question: "The 4 most common HTTP methods are...", week: 2 }, { id: 5, question: "You hear Ming talk about dogs, cats and cows", week: 3 }, { id: 6, question: "Promises...", week: 3 }];
+
+exports.default = testquestions;
 
 /***/ })
 /******/ ]);
