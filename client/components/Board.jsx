@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import Score from './Score'
 import Questions from './Questions'
+import Answers from './Answers'
 
 class Board extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Board extends React.Component {
             score: 1,
             questionsId: 1,
             question: 'Day 1 of Bootcamp and you feel....',
+            answers: ['Awesome!', 'Frikkin\' Awesome']
 
 
         }
@@ -23,12 +25,13 @@ class Board extends React.Component {
 
 
     render () {
-       const {score, question} = this.state
+       const {score, question, answers} = this.state
 
         return (
         <div>
             <Score score={score}/>
             <Questions question={question}/>
+            <Answers answers={answers}/>
         </div>
         )
         
