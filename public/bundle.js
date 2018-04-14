@@ -2554,7 +2554,8 @@ var Score = function Score(props) {
         _react2.default.createElement(
             "h1",
             null,
-            "Score"
+            "score: ",
+            props.score
         )
     );
 };
@@ -24444,7 +24445,11 @@ var Board = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            //these are all the parts that will be changed as the game is played
+            score: 1
+
+        };
 
         return _this;
     }
@@ -24452,11 +24457,13 @@ var Board = function (_React$Component) {
     _createClass(Board, [{
         key: 'render',
         value: function render() {
+            var score = this.state.score;
+
 
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_Score2.default, null),
+                _react2.default.createElement(_Score2.default, { score: score }),
                 _react2.default.createElement(_Questions2.default, null)
             );
         }

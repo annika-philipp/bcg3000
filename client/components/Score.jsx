@@ -3,7 +3,7 @@ import React from 'react'
 const Score = (props) => {
     return (
         <div className="score">
-        <h1>Score</h1>
+        <h1>score: {props.score}</h1>
         </div>
     )
 }

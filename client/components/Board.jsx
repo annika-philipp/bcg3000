@@ -10,15 +10,22 @@ class Board extends React.Component {
         super(props);
 
         this.state = {
+            //these are all the parts that will be changed as the game is played
+            score: 1,
+
 
         }
 
+
     }
+
+
     render () {
+       const {score} = this.state
 
         return (
         <div>
-            <Score />
+            <Score score={score}/>
             <Questions />
         </div>
         )
