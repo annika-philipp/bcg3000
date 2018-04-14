@@ -2586,7 +2586,7 @@ var Questions = function Questions(props) {
         _react2.default.createElement(
             "p",
             null,
-            "questions"
+            props.question
         )
     );
 };
@@ -24447,7 +24447,9 @@ var Board = function (_React$Component) {
 
         _this.state = {
             //these are all the parts that will be changed as the game is played
-            score: 1
+            score: 1,
+            questionsId: 1,
+            question: 'Day 1 of Bootcamp and you feel....'
 
         };
 
@@ -24457,14 +24459,16 @@ var Board = function (_React$Component) {
     _createClass(Board, [{
         key: 'render',
         value: function render() {
-            var score = this.state.score;
+            var _state = this.state,
+                score = _state.score,
+                question = _state.question;
 
 
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(_Score2.default, { score: score }),
-                _react2.default.createElement(_Questions2.default, null)
+                _react2.default.createElement(_Questions2.default, { question: question })
             );
         }
     }]);

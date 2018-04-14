@@ -12,6 +12,8 @@ class Board extends React.Component {
         this.state = {
             //these are all the parts that will be changed as the game is played
             score: 1,
+            questionsId: 1,
+            question: 'Day 1 of Bootcamp and you feel....',
 
 
         }
@@ -21,12 +23,12 @@ class Board extends React.Component {
 
 
     render () {
-       const {score} = this.state
+       const {score, question} = this.state
 
         return (
         <div>
             <Score score={score}/>
-            <Questions />
+            <Questions question={question}/>
         </div>
         )
         
