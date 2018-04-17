@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Score = (props) => {
-    return 
+const Score = ({totalscore}) => {
+    return (
         <div className="score">
-            {props.score.value}
+        <h2>score: {totalscore}</h2>
         </div>
+    )
 }
-// not 100% sure if this is sufficient - come back to this later
 export default Score

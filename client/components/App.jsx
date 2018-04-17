@@ -1,44 +1,26 @@
 import React from 'react'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
-import Header from './Header'
+import Welcome from './Welcome'
 import Board from './Board'
+import Score from './Score'
+import Questions from './Questions'
+import Answers from './Answers'
 
-class App extends React.Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
 
-        }
-    
-    //this...= this...bind(this)
-    }
-
-    //clickFunctions
-
-    //pause thingy
-
-    //startGame Button thingy
-
-    // this.setState({
-//key:value pairs
-    // })
-
-    //scores logic get score, compare score, check if big enough to be added to scoreboard
-
-    // render(){
-    // const something=something
-    
-
-    // }
-
-    // return (
-    //     <div className="container">
-    //         <div className="game">
-    //             <Header>
-    //             <Board>
-    //         </div>
-    //     </div>
-    // )
-
+const App = () => {
+    return (
+    <Router>
+        <div className="container">
+            <div className="row">
+                <h1>BCG 3000</h1>
+            </div>    
+            <Route exact path = '/' component = {Welcome} />
+            <Route exact path = '/bcg3000' component = {Board} />
+        </div>
+    </Router>    
+    )
 }
+
+export default App
