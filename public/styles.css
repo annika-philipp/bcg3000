@@ -46,15 +46,8 @@ body {
 
 }
 
-/* button {
-    border: .25em solid darkgray;
-    border-radius: .3em;
-    height: 100px;
-    margin-bottom: .5em
-
-} */
-
-.button {
+/* 
+.answerbutton {
     width: 80%;
     height: 100px;
     background-color: darkgray;
@@ -64,21 +57,25 @@ body {
     text-transform: none;
     margin: .5em auto
 
-}
+} */
 
 .row {
     border: .1em dotted yellow;
-    text-align: center
+    text-align: center;
     /* how to align content in the center of the row? */
 }
 
 h1 {
-    font-size: 3em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5em;
+    margin-top: 20px;
+    margin-bottom: 0
 
 }
 
 h2 {
-    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
 }
 
 .welcome {
@@ -86,7 +83,7 @@ h2 {
     height: 300px;
     margin: 20px auto 20px auto;
     background-color: rgb(54, 52, 52);
-    border: .4em solid goldenrod;
+    border: .4em solid rgb(177, 175, 172);
     border-radius: .3em;
     color: white;
     text-align: center;
@@ -99,17 +96,26 @@ h2 {
     font-size: 2em
 }
 
-/* .startbutton {
-    width: 50%;
+.welcomebuttonspace {
+    margin: 0 auto 20px auto;
+    align-items: center
+}
+
+
+.startbutton {
+    width: 80%;
     height: 80px;
     background-color: darkgray;
-    border: .3em solid goldenrod;
+    border: .2em solid rgb(83, 83, 82);
     border-radius: .15em;
     font-size: .8em;
     text-transform: none;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
+    font-family: 'Geo', serif;
+    font-size: 2em;
 
-} */
+
+}
 
 /* 
 @media screen and (max-width: 500px){

@@ -10,8 +10,10 @@ const Welcome = () => {
                         <h2>Welcome to 6 weeks</h2>
                         <h2>of fun(ctions)</h2> 
                     </div>
-                </div>    
-                <Link to = {'/bcg3000'}><button className="button">Start Game</button></Link>
+                </div>  
+                <div className='welcomebuttonspace'>  
+                <Link to = {'/bcg3000'}><button className="startbutton">Start Game</button></Link>
+                </div>
             </div>    
 
     )

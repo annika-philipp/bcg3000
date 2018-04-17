@@ -2626,12 +2626,12 @@ var Answers = function Answers(_ref) {
         { className: "answers" },
         _react2.default.createElement(
             "button",
-            { onClick: updateScore, className: "button" },
+            { className: "startbutton" },
             answers[0]
         ),
         _react2.default.createElement(
             "button",
-            { onClick: updateScore, className: "button" },
+            { className: "startbutton" },
             answers[1]
         )
     );
@@ -24431,12 +24431,16 @@ var Welcome = function Welcome() {
             )
         ),
         _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/bcg3000' },
+            'div',
+            { className: 'welcomebuttonspace' },
             _react2.default.createElement(
-                'button',
-                { className: 'button' },
-                'Start Game'
+                _reactRouterDom.Link,
+                { to: '/bcg3000' },
+                _react2.default.createElement(
+                    'button',
+                    { className: 'startbutton' },
+                    'Start Game'
+                )
             )
         )
     );
@@ -24506,58 +24510,51 @@ var Board = function (_React$Component) {
         _this.state = {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
-            questionsId: 1,
+            questionId: 1,
             question: 'Day 1 of Bootcamp and you feel....',
             answers: ['Awesome!', 'Frikkin\' Awesome']
             //pause: false -- maybe
 
 
-        };
+            // this.showQuestion = this.showQuestion.bind(this)
+            // this.clickButton = this.clickButton.bind(this)
+            // this.updateScore = this.updateScore.bind(this)
 
-        _this.showQuestion = _this.showQuestion.bind(_this);
-        _this.clickButton = _this.clickButton.bind(_this);
-        _this.updateScore = _this.updateScore.bind(_this);
 
-        return _this;
+        };return _this;
     }
 
-    //this will somehow have to come from my seeds and api
+    // //this will somehow have to come from my seeds and api
+    // getQuestion (id, question) {
+    //     this.setState({
+    //         questionId: questionID + 1,
+    //         question: testquestions.question
+    //     })
+    // }
+
+    // //this is semi-pseudocoded
+    // getAnswers (answer1, answer2) {
+    //     const answers = this.state.answers
+    //         answers.push(answer1)
+    //         answers.push(answer2)
+    //         this.setState({answers})
+    // }
+
+
+    // updateScore(score){
+    //   const totalscore = this.state.totalscore
+    //   // if button pressed is answer[0] then totalscore += answer[0]score
+    //   //if button pressed is answer[1] then total score += answer[1].score 
+    //   //totalscore += testanswers.score  
+    //   //this.setState({score})
+    // }
+
+    // componentDidMount() {
+    //     //what needs to go in here?
+    // }
 
 
     _createClass(Board, [{
-        key: 'showQuestion',
-        value: function showQuestion(id, question) {
-            this.setState({
-                questionId: questionID + 1,
-                question: _testquestions2.default.question
-            });
-        }
-
-        //this is semi-pseudocoded
-
-    }, {
-        key: 'showAnswers',
-        value: function showAnswers(answer1, answer2) {
-            var answers = this.state.answers;
-            answers.push(answer1);
-            answers.push(answer2);
-            this.setState({ answers: answers });
-        }
-    }, {
-        key: 'updateScore',
-        value: function updateScore(score) {
-            var totalscore = this.state.totalscore;
-            // if button pressed is answer[0] then totalscore += answer[0]score
-            //if button pressed is answer[1] then total score += answer[1].score 
-            //totalscore += testanswers.score  
-            //this.setState({score})
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            //what needs to go in here?
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,
@@ -24571,7 +24568,7 @@ var Board = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'game', key: 'this.state.questionId' },
+                { className: 'game' },
                 _react2.default.createElement(_Score2.default, { totalscore: totalscore }),
                 _react2.default.createElement(_Questions2.default, { question: question }),
                 _react2.default.createElement(_Answers2.default, { answers: answers })
