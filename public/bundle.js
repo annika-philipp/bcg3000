@@ -24416,23 +24416,19 @@ var Welcome = function Welcome() {
             'div',
             { className: 'welcome' },
             _react2.default.createElement(
-                'div',
-                { className: 'welcometext' },
-                _react2.default.createElement(
-                    'h2',
-                    null,
-                    'Welcome to 6 weeks'
-                ),
-                _react2.default.createElement(
-                    'h2',
-                    null,
-                    'of fun(ctions)'
-                )
+                'h3',
+                null,
+                'Welcome to 6 weeks'
+            ),
+            _react2.default.createElement(
+                'h3',
+                null,
+                'of fun(ctions)'
             )
         ),
         _react2.default.createElement(
             'div',
-            { className: 'welcomebuttonspace' },
+            { className: 'row' },
             _react2.default.createElement(
                 _reactRouterDom.Link,
                 { to: '/bcg3000' },

@@ -1,14 +1,15 @@
 {
-  "name": "react-minimal",
+  "name": "BCG3000",
   "version": "0.1.0",
-  "description": "the essence of a react component",
-  "repository": "https://github.com/annika-philipp/bcg.git",
-  "main": "index.js",
+  "description": "Personal Bootcamp Project",
+  "repository": "https://github.com/annika-philipp/bcg3000.git",
+  "main": "server/index.js",
   "scripts": {
     "start": "node server",
     "dev": "node server & webpack --watch",
     "postinstall": "webpack",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "knex": "knex"
   },
   "babel": {
     "presets": [
@@ -24,13 +25,18 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "knex": "^0.14.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "sqlite3": "^3.1.13",
+    "superagent": "^3.8.2",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
-    "jest": "^22.4.3"
+    "jest": "^22.4.3",
+    "nodemon": "^1.14.12"
   }
 }

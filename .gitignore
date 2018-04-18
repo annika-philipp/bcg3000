@@ -1,3 +1,4 @@
 node_modules
-.npm
-dev.sqlite3x1aq
+bundle.js
+bundle.js.map
+dev.sqlite3
