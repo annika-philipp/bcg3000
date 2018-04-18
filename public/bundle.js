@@ -24546,10 +24546,10 @@ var Board = function (_React$Component) {
         }
     }, {
         key: 'renderQuestion',
-        value: function renderQuestion(id, question) {
+        value: function renderQuestion(question, id) {
             this.setState({
-                questionId: id,
-                question: question
+                question: question,
+                questionId: id
             });
         }
     }, {
@@ -24624,38 +24624,38 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var questionsUrl = 'http://localhost:3000/api/v1';
-var answersUrl = 'http://localhost:3000/api/v1/';
+var url = '/api/v1';
+// const answersUrl = 'http://localhost:3000/api/v1/'
 //const scoreUrl = 'http://localhost:3000/v1/'
 
-// export function getQuestions (callback) {
-//   request
-//     .get(questionsUrl)
-//     .then(data => {
-//        let returnedQuestion = data.body
-//        console.log(returnedQuestion)
-//         callback(returnedQuestion.question, returnedQuestion.id)
-//       })
-// }
-
 function getQuestions(callback) {
-  _superagent2.default.get(questionsUrl).end(function (err, res) {
-    callback(err, res.body);
+  return _superagent2.default.get(url).then(function (data) {
+    var returnedQuestion = data.body;
+    //       console.log(returnedQuestion)
+    callback(returnedQuestion.question, returnedQuestion.id);
+  }).catch(function (err) {
+    console.log('err', err);
+    throw Error('Cannot GET Questions!');
   });
 }
 
+// export function getQuestions (callback) {
+//   request
+//   .get (Url)
+//   .end((err, res) => {
+//     callback(err, res.body)
+//   })
+// }
+
 //somewhere in here I join my answers to my questions
-// export function getAnswers () {
-//     return request.get('/v1/answers')
+// export function getAnswers (callback, id) {
+// request.get(url + '/1')
 //       // .then(data => {
-//       //   const posts = data.body
-//       //   return posts.map(post => {
-//       //   return Object.assign(
-//       //       {},
-//       //       post,
-//       //       { paragraphs: JSON.parse(post.paragraphs) }
-//       //     )
-//       //   })
+//       //   let returnedAnswers = data.body
+//the following is to filter out the two answers associated with each question
+//       //   var questionsArray = data.answers.filter(element => id == answer.question_id)
+//       //   console.log(questionsArray)
+//       //   callback(questionsArray)
 //       // })
 //       .catch(err => {
 //         console.log('err', err)

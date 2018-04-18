@@ -8,7 +8,8 @@ const db = require('../db/db')
 
 router.use(bodyParser.json())
 
-router.get('/bcg3000', (req, res) => {
+router.get('/', (req, res) => {
+    console.log('im here')
     db.getQuestions()
     .then(questions => {
         res.json(questions)
@@ -18,7 +19,7 @@ router.get('/bcg3000', (req, res) => {
     })
 })
 
-router.get('/bcg3000', (req, res) => {
+router.get('/1', (req, res) => {
     db.getAnswers()
     .then(answers => {
         res.json(answers)

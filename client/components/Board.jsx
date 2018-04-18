@@ -36,10 +36,10 @@ class Board extends React.Component {
         this.refreshBoard()
     }
 
-    renderQuestion(id, question) {
+    renderQuestion(question, id) {
         this.setState({
-            questionId: id,
-            question: question
+            question: question,
+            questionId: id
         })
     }
 
