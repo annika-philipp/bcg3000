@@ -1,11 +1,14 @@
-var path = require('path')
-var express = require('express')
-const routes = require('./routes/routes')
+const path = require('path')
+const express = require('express')
+const router = require('./routes/routes')
+const bodyParser = require('body-parser')
 
 var server = express()
+
+server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
-server.use('/v1/routes', routes)
+server.use('/api/v1', router)
 
 module.exports = server
 

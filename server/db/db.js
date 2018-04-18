@@ -1,5 +1,6 @@
+const path = require('path')
 const environment = process.env.NODE_ENV || 'development'
-const config = require('./knexfile')[environment]
+const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 //check tomorrow, compare with charlotte's web api
 module.exports = {
@@ -30,7 +31,7 @@ function getAnswersForQuestions (id, testConn) {
 
 // to add when adding scores table (Stretch)
 // function getScores (testConn) {
-//     const conn('scores')
+//     const conn = testConn || connection
 //     return conn('scores').select()
 // }
 

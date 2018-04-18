@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom'
 import Score from './Score'
 import Questions from './Questions'
 import Answers from './Answers'
-import testquestions from '../../public/data/testquestions'
-import testanswers from '../../public/data/testanswers'
+
+import {getQuestions} from '../api'
 
 class Board extends React.Component {
     constructor(props) {
@@ -15,15 +15,16 @@ class Board extends React.Component {
         this.state = {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
-            questionId: 1,
-            question: 'Day 1 of Bootcamp and you feel....',
-            answers: ['Awesome!', 'Frikkin\' Awesome']
+            questionId: 0,
+            question: '',
+            answers: ['Yay', 'Nay']
             //pause: false -- maybe
 
 
         }
 
-        // this.showQuestion = this.showQuestion.bind(this)
+        this.refreshBoard = this.refreshBoard.bind(this)
+        this.renderQuestion = this.renderQuestion.bind(this)
         // this.clickButton = this.clickButton.bind(this)
         // this.updateScore = this.updateScore.bind(this)
 
@@ -31,13 +32,24 @@ class Board extends React.Component {
 
     }
 
-    // //this will somehow have to come from my seeds and api
-    // getQuestion (id, question) {
-    //     this.setState({
-    //         questionId: questionID + 1,
-    //         question: testquestions.question
-    //     })
-    // }
+    componentDidMount() {
+        this.refreshBoard()
+    }
+
+    renderQuestion(id, question) {
+        this.setState({
+            questionId: id,
+            question: question
+        })
+    }
+
+    refreshBoard (err) {
+        this.setState({
+            error: err
+        })
+        getQuestions(this.renderQuestion)
+    }
+
 
     // //this is semi-pseudocoded
     // getAnswers (answer1, answer2) {
@@ -57,9 +69,7 @@ class Board extends React.Component {
     //   //this.setState({score})
     // }
 
-    // componentDidMount() {
-    //     //what needs to go in here?
-    // }
+  
 
 
     render () {
