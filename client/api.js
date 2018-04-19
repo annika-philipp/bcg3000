@@ -8,17 +8,16 @@ const url = 'http://localhost:3000/api/v1/'
 //const scoreUrl = 'http://localhost:3000/v1/'
 
 export function getQuestions (callback) {
-  console.log('Connecting to:', url)
   return request
     .get(url)
-    .then(data => {
-       let returnedQuestion = data.body[0]
-      console.log('data', data.body)
-        callback(returnedQuestion.question, returnedQuestion.id)
+    .then(response => {
+       // console.log('response', response.body)
+        let questionList = response.body
+        callback(questionList)
       })
       .catch(err => {
-             console.log('err', err)
-              throw Error('Cannot GET Questions!')
+        console.log('err', err)
+        throw Error('Cannot GET Questions!')
       })
 }
 

@@ -3,8 +3,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Score from './Score'
-import Questions from './Questions'
-import Answers from './Answers'
+import Display from './Display'
 
 import {getQuestions} from '../api'
 
@@ -16,15 +15,17 @@ class Board extends React.Component {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
             questionId: 0,
+            questions: [],
             question: '',
-            answers: ['Yay', 'Nay']
+            answers: [],
+            currentQuestionObject: null 
             //pause: false -- maybe
 
 
         }
 
         this.refreshBoard = this.refreshBoard.bind(this)
-        this.renderQuestion = this.renderQuestion.bind(this)
+        this.saveQuestions = this.saveQuestions.bind(this)
         // this.clickButton = this.clickButton.bind(this)
         // this.updateScore = this.updateScore.bind(this)
     }
@@ -34,24 +35,25 @@ class Board extends React.Component {
         this.refreshBoard()
     }
 
-    renderQuestion(question, id) {
-        console.log('renderQuestion111')
+    saveQuestions(questionsList) {
+         console.log('show me questionsList: ' + questionsList)
 
-        console.log('I got a question: ', question, id)
+        // console.log('I got a question: ', question, id)
         
         this.setState({
-            question: question,
-            questionId: id
+            questions: questionsList,
+            currentQuestionObject: questionsList[0]
         })
+        console.log('Board 47 ' + question)
         //link this with answers
         //getAnswers(this.renderAnswers, id) - which will be similar to renderQuestion
     }
 
     refreshBoard (err) {
         this.setState({
-            error: err
+            error: err,
         })
-        getQuestions(this.renderQuestion)
+        getQuestions(this.saveQuestions)
         
     }
 
@@ -86,8 +88,8 @@ class Board extends React.Component {
         return (
         <div className="game">
             <Score totalscore={totalscore}/>
-            <Questions question={question}/>
-            <Answers answers={answers}/>
+            {this.state.questions.length > 0 && <Display question={this.state.currentQuestionObject}/>}
+            {/* {this.state.questions.length > 0 && <Answers answers={this.state.currentQuestionObject.answers}/>} */}
         </div>
         )
         

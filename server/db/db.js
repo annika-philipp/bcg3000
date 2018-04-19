@@ -27,14 +27,14 @@ function getQuestionsAndAnswers (id, testConn) {
     .select()
 }
 
-//do I need this, or just have them separate?
-function getAnswersForQuestions (id, testConn) {
-    const conn = testConn || connection
-    return conn('questions')
-    .join('answers', 'questions.id', 'answers.question_id')
-    .where('questions.id', id)
-    .select('answers.question_id', 'question', 'answer', 'answers.id as answer id')
-}
+// //do I need this, or just have them separate?
+// function getAnswersForQuestions (id, testConn) {
+//     const conn = testConn || connection
+//     return conn('questions')
+//     .join('answers', 'questions.id', 'answers.question_id')
+//     .where('questions.id', id)
+//     .select('answers.question_id', 'question', 'answer', 'answers.id as answer id')
+// }
 
 // to add when adding scores table (Stretch)
 // function getScores (testConn) {

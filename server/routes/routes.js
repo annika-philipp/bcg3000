@@ -9,12 +9,11 @@ const db = require('../db/db')
 router.use(bodyParser.json())
 
 router.get('/', (req, res) => {
-    console.log('im here')
     db.getQuestionsAndAnswers()
     .then(questions => {
-        console.log('im here too', questions)
+        // console.log('im here too', questions)
 
-        let data = []
+        let questionsList = []
         for(var i = 0; i < questions.length; i=i+2) {
             let question = questions[i]
             let nextQuestion = questions[i+1]
@@ -26,12 +25,12 @@ router.get('/', (req, res) => {
                     nextQuestion.answer
                 ]
             }
-            data.push(q)
+            questionsList.push(q)
         }
 
-        console.log(data)
+        console.log('router.js: ' + questionsList)
 
-        res.json(data)
+        res.json(questionsList)
     })
     .catch(err => {
         console.log('i dont want to be here', err)
@@ -39,15 +38,15 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/1', (req, res) => {
-    db.getAnswers()
-    .then(answers => {
-        res.json(answers)
-    })
-    .catch(err => {
-        res.status(500).send('DATABASE ERROR: ' + err.message)
-    })
-})
+// router.get('/1', (req, res) => {
+//     db.getAnswers()
+//     .then(answers => {
+//         res.json(answers)
+//     })
+//     .catch(err => {
+//         res.status(500).send('DATABASE ERROR: ' + err.message)
+//     })
+// })
 
 //stretch don't forget to give actual patch
 // router.get('#', (req, res) => {

@@ -4,8 +4,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import Welcome from './Welcome'
 import Board from './Board'
 import Score from './Score'
-import Questions from './Questions'
-import Answers from './Answers'
+import Display from './Display'
 
 
 
