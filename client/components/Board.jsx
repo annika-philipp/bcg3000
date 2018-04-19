@@ -27,20 +27,24 @@ class Board extends React.Component {
         this.renderQuestion = this.renderQuestion.bind(this)
         // this.clickButton = this.clickButton.bind(this)
         // this.updateScore = this.updateScore.bind(this)
-
-
-
     }
 
     componentDidMount() {
+        console.log('Mount')
         this.refreshBoard()
     }
 
     renderQuestion(question, id) {
+        console.log('renderQuestion111')
+
+        console.log('I got a question: ', question, id)
+        
         this.setState({
             question: question,
             questionId: id
         })
+        //link this with answers
+        //getAnswers(this.renderAnswers, id) - which will be similar to renderQuestion
     }
 
     refreshBoard (err) {
@@ -48,11 +52,12 @@ class Board extends React.Component {
             error: err
         })
         getQuestions(this.renderQuestion)
+        
     }
 
 
     // //this is semi-pseudocoded
-    // getAnswers (answer1, answer2) {
+    // getAnswers (callback) {
     //     const answers = this.state.answers
     //         answers.push(answer1)
     //         answers.push(answer2)

@@ -24534,23 +24534,28 @@ var Board = function (_React$Component) {
         _this.renderQuestion = _this.renderQuestion.bind(_this);
         // this.clickButton = this.clickButton.bind(this)
         // this.updateScore = this.updateScore.bind(this)
-
-
         return _this;
     }
 
     _createClass(Board, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
+            console.log('Mount');
             this.refreshBoard();
         }
     }, {
         key: 'renderQuestion',
         value: function renderQuestion(question, id) {
+            console.log('renderQuestion111');
+
+            console.log('I got a question: ', question, id);
+
             this.setState({
                 question: question,
                 questionId: id
             });
+            //link this with answers
+            //getAnswers(this.renderAnswers, id) - which will be similar to renderQuestion
         }
     }, {
         key: 'refreshBoard',
@@ -24562,7 +24567,7 @@ var Board = function (_React$Component) {
         }
 
         // //this is semi-pseudocoded
-        // getAnswers (answer1, answer2) {
+        // getAnswers (callback) {
         //     const answers = this.state.answers
         //         answers.push(answer1)
         //         answers.push(answer2)
@@ -24624,14 +24629,16 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var url = '/api/v1';
+var url = 'http://localhost:3000/api/v1/';
+
 // const answersUrl = 'http://localhost:3000/api/v1/'
 //const scoreUrl = 'http://localhost:3000/v1/'
 
 function getQuestions(callback) {
+  console.log('Connecting to:', url);
   return _superagent2.default.get(url).then(function (data) {
-    var returnedQuestion = data.body;
-    //       console.log(returnedQuestion)
+    var returnedQuestion = data.body[0];
+    console.log('data', data.body);
     callback(returnedQuestion.question, returnedQuestion.id);
   }).catch(function (err) {
     console.log('err', err);

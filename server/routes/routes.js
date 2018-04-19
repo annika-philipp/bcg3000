@@ -10,11 +10,31 @@ router.use(bodyParser.json())
 
 router.get('/', (req, res) => {
     console.log('im here')
-    db.getQuestions()
+    db.getQuestionsAndAnswers()
     .then(questions => {
-        res.json(questions)
+        console.log('im here too', questions)
+
+        let data = []
+        for(var i = 0; i < questions.length; i=i+2) {
+            let question = questions[i]
+            let nextQuestion = questions[i+1]
+            let q = {
+                question: question.question,
+                question_id: question.question_id,
+                answers: [
+                    question.answer,
+                    nextQuestion.answer
+                ]
+            }
+            data.push(q)
+        }
+
+        console.log(data)
+
+        res.json(data)
     })
     .catch(err => {
+        console.log('i dont want to be here', err)
         res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })

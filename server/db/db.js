@@ -6,7 +6,7 @@ const connection = require('knex')(config)
 module.exports = {
     getAnswers,
     getQuestions,
-    getAnswersForQuestions
+    getQuestionsAndAnswers
 }
 
 function getAnswers (testConn) {
@@ -18,6 +18,13 @@ function getAnswers (testConn) {
 function getQuestions (testConn) {
     const conn = testConn || connection
     return conn('questions').select()
+}
+
+function getQuestionsAndAnswers (id, testConn) {
+    const conn = testConn || connection
+    return conn('questions')
+    .join('answers', 'questions.id', 'answers.question_id')
+    .select()
 }
 
 //do I need this, or just have them separate?

@@ -56,7 +56,6 @@ body {
     font-size: 10px;
     text-transform: none;
     margin: .5em auto
-
 } */
 
 .row {
@@ -122,11 +121,9 @@ h2 {
     .container {
         width: 100%
     }
-
     .game {
       width: 100%;
     }
-
     /* .question {
         font-size: 3em
     } */

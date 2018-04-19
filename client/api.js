@@ -1,15 +1,19 @@
 import request from 'superagent'
 
-const url = '/api/v1'
+const url = 'http://localhost:3000/api/v1/'
+
+
+
 // const answersUrl = 'http://localhost:3000/api/v1/'
 //const scoreUrl = 'http://localhost:3000/v1/'
 
 export function getQuestions (callback) {
+  console.log('Connecting to:', url)
   return request
     .get(url)
     .then(data => {
-       let returnedQuestion = data.body
-//       console.log(returnedQuestion)
+       let returnedQuestion = data.body[0]
+      console.log('data', data.body)
         callback(returnedQuestion.question, returnedQuestion.id)
       })
       .catch(err => {

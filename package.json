@@ -6,7 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server",
-    "dev": "node server & webpack --watch",
+    "dev": "nodemon server & webpack --watch",
     "postinstall": "webpack",
     "test": "jest --watchAll",
     "knex": "knex"
