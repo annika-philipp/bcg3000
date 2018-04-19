@@ -44,10 +44,8 @@ class Board extends React.Component {
             questions: questionsList,
             currentQuestionObject: questionsList[0]
         })
-        console.log('Board 47 ' + question)
-        //link this with answers
-        //getAnswers(this.renderAnswers, id) - which will be similar to renderQuestion
     }
+       
 
     refreshBoard (err) {
         this.setState({
