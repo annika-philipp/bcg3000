@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Score from './Score'
-import Display from './Display'
+import NewDisplay from './NewDisplay'
 
 import {getQuestions} from '../api'
 
@@ -14,6 +14,7 @@ class Board extends React.Component {
         this.state = {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
+            scores: [],
             questionId: 0,
             questions: [],
             question: '',
@@ -44,6 +45,7 @@ class Board extends React.Component {
             questions: questionsList,
             currentQuestionObject: questionsList[0]
         })
+    
     }
        
 
@@ -66,13 +68,15 @@ class Board extends React.Component {
     
 
 
-    // updateScore(score){
-    //   const totalscore = this.state.totalscore
+    updateScore () {
+    const totalscores = this.state.currentQuestionObject.scores[0]
+    this.setState({totalscore})
+
     //   // if button pressed is answer[0] then totalscore += answer[0]score
     //   //if button pressed is answer[1] then total score += answer[1].score 
     //   //totalscore += testanswers.score  
     //   //this.setState({score})
-    // }
+    }
 
   
 
@@ -85,8 +89,10 @@ class Board extends React.Component {
 
         return (
         <div className="game">
-            <Score totalscore={totalscore}/>
-            {this.state.questions.length > 0 && <Display question={this.state.currentQuestionObject}/>}
+            <Score updateScore={this.updateScore}/>
+
+            {/* <Score totalscore={totalscore}/> */}
+            {this.state.questions.length > 0 && <NewDisplay question={this.state.currentQuestionObject} updateScore={this.updateScore}/>}
             {/* {this.state.questions.length > 0 && <Answers answers={this.state.currentQuestionObject.answers}/>} */}
         </div>
         )

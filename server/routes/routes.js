@@ -11,7 +11,7 @@ router.use(bodyParser.json())
 router.get('/', (req, res) => {
     db.getQuestionsAndAnswers()
     .then(questions => {
-        // console.log('im here too', questions)
+         console.log('im here too', questions)
 
         let questionsList = []
         for(var i = 0; i < questions.length; i=i+2) {
@@ -20,15 +20,18 @@ router.get('/', (req, res) => {
             let q = {
                 question: question.question,
                 question_id: question.question_id,
-                answers: [
+                answers: [ 
                     question.answer,
                     nextQuestion.answer
+                ],
+                scores: [
+                    question.score,
+                    nextQuestion.score
                 ]
             }
             questionsList.push(q)
         }
-
-        console.log('router.js: ' + questionsList)
+        console.log(questionsList)
 
         res.json(questionsList)
     })
