@@ -24606,10 +24606,7 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var url = 'http://localhost:3000/api/v1/';
-
-// const answersUrl = 'http://localhost:3000/api/v1/'
-//const scoreUrl = 'http://localhost:3000/v1/'
+var url = '/api/v1';
 
 function getQuestions(callback) {
   return _superagent2.default.get(url).then(function (response) {
