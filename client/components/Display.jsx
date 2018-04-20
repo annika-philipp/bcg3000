@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Display = ({question}) => {
+const Display = ({question, updateIndex}) => {
 
   
 
@@ -15,8 +15,8 @@ const Display = ({question}) => {
           </div> 
         </div>
         <div>   
-          <button className="startbutton">{question.answers[0]}{question.scores[0]}</button>
-          <button className="startbutton">{question.answers[1]}{question.scores[1]}</button>
+          <button onClick={updateIndex} className="startbutton">{question.answers[0]}{question.scores[0]}</button>
+          <button onClick={updateIndex} className="startbutton">{question.answers[1]}{question.scores[1]}</button>
         </div>
       </div>
     )

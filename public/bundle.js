@@ -2581,7 +2581,8 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Display = function Display(_ref) {
-  var question = _ref.question;
+  var question = _ref.question,
+      updateIndex = _ref.updateIndex;
 
 
   return _react2.default.createElement(
@@ -2605,13 +2606,13 @@ var Display = function Display(_ref) {
       null,
       _react2.default.createElement(
         "button",
-        { className: "startbutton" },
+        { onClick: updateIndex, className: "startbutton" },
         question.answers[0],
         question.scores[0]
       ),
       _react2.default.createElement(
         "button",
-        { className: "startbutton" },
+        { onClick: updateIndex, className: "startbutton" },
         question.answers[1],
         question.scores[1]
       )
@@ -24498,11 +24499,12 @@ var Board = function (_React$Component) {
             //these are all the parts that will be changed as the game is played
             totalscore: 1,
             scores: [],
-            questionId: 0,
+            // questionId: 0,
             questions: [],
             question: '',
             answers: [],
-            currentQuestionObject: null
+            currentQuestionObject: null,
+            index: 0
             //pause: false -- maybe
 
 
@@ -24510,6 +24512,7 @@ var Board = function (_React$Component) {
 
         _this.refreshBoard = _this.refreshBoard.bind(_this);
         _this.saveQuestions = _this.saveQuestions.bind(_this);
+        _this.updateIndex = _this.updateIndex.bind(_this);
         // this.clickButton = this.clickButton.bind(this)
         // this.updateScore = this.updateScore.bind(this)
         return _this;
@@ -24526,11 +24529,9 @@ var Board = function (_React$Component) {
         value: function saveQuestions(questionsList) {
             console.log('show me questionsList: ' + questionsList);
 
-            // console.log('I got a question: ', question, id)
-
             this.setState({
                 questions: questionsList,
-                currentQuestionObject: questionsList[0]
+                currentQuestionObject: questionsList
             });
         }
     }, {
@@ -24541,44 +24542,40 @@ var Board = function (_React$Component) {
             });
             (0, _api.getQuestions)(this.saveQuestions);
         }
+    }, {
+        key: 'updateIndex',
+        value: function updateIndex() {
+            console.log("updating index");
+            var next = this.state.index + 1;
 
-        // //this is semi-pseudocoded
-        // getAnswers (callback) {
-        //     const answers = this.state.answers
-        //         answers.push(answer1)
-        //         answers.push(answer2)
-        //         this.setState({answers})
-        // }
+            this.setState({
+                index: next
+            });
+        }
+    }, {
+        key: 'handleUpdate',
+        value: function handleUpdate(index) {
+            console.log('handleUpdate index :' + index);
+            // const {totalscore, question, answers} = this.state
 
-
-        // updateScore () {
-        // const totalscores = this.state.currentQuestionObject.scores[0]
-        // this.setState({totalscore})
-
-        // //   // if button pressed is answer[0] then totalscore += answer[0]score
-        // //   //if button pressed is answer[1] then total score += answer[1].score 
-        // //   //totalscore += testanswers.score  
-        // //   //this.setState({score})
-        // }
-
-
+            if (this.state.questions.length > 0) {
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex })
+                );
+            }
+        }
     }, {
         key: 'render',
         value: function render() {
-            var _state = this.state,
-                totalscore = _state.totalscore,
-                question = _state.question,
-                answers = _state.answers;
-
-            console.log(totalscore, question, answers);
 
             //    if (questionsId == 13) return 
 
             return _react2.default.createElement(
                 'div',
                 { className: 'game' },
-                _react2.default.createElement(_Score2.default, { totalscore: totalscore }),
-                this.state.questions.length > 0 && _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject })
+                this.handleUpdate(this.state.index)
             );
         }
     }]);
