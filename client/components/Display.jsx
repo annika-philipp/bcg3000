@@ -6,9 +6,9 @@ const Display = ({question}) => {
 
     return (
       <div>
-        <div className="score">
+        {/* <div className="score">
         <h2>score: {totalscore}</h2>
-        </div>
+        </div> */}
         <div className="screen">
           <div className="question">
             <h3>{question.question}</h3>

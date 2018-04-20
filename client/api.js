@@ -21,26 +21,10 @@ export function getQuestions (callback) {
       })
 }
 
-// export function getQuestions (callback) {
+// export function getScores (callback) {
 //   request
 //   .get (Url)
 //   .end((err, res) => {
 //     callback(err, res.body)
 //   })
 // }
-
-//somewhere in here I join my answers to my questions
-// export function getAnswers (callback, id) {
-    // request.get(url + '/1')
-//       // .then(data => {
-//       //   let returnedAnswers = data.body
-              //the following is to filter out the two answers associated with each question
-//       //   var questionsArray = data.answers.filter(element => id == answer.question_id)
-//       //   console.log(questionsArray)
-//       //   callback(questionsArray)
-//       // })
-//       .catch(err => {
-//         console.log('err', err)
-//         throw Error('Cannot GET Answers!')
-//       })
-//   }
