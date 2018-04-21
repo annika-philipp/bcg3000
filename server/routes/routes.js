@@ -41,6 +41,10 @@ router.get('/', (req, res) => {
     })
 })
 
+// router.get('/gameover' (req, res) => {
+// res.
+
+// })
 // router.get('/1', (req, res) => {
 //     db.getAnswers()
 //     .then(answers => {

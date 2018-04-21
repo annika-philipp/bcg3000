@@ -2582,12 +2582,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Display = function Display(_ref) {
   var question = _ref.question,
-      updateIndex = _ref.updateIndex;
+      updateIndex = _ref.updateIndex,
+      totalscore = _ref.totalscore;
 
 
   return _react2.default.createElement(
     "div",
     null,
+    _react2.default.createElement(
+      "div",
+      { className: "score" },
+      _react2.default.createElement(
+        "h2",
+        null,
+        "score: ",
+        totalscore
+      )
+    ),
     _react2.default.createElement(
       "div",
       { className: "screen" },
@@ -2606,15 +2617,17 @@ var Display = function Display(_ref) {
       null,
       _react2.default.createElement(
         "button",
-        { onClick: updateIndex, className: "startbutton" },
-        question.answers[0],
-        question.scores[0]
+        { onClick: function onClick() {
+            return updateIndex(question.scores[0]);
+          }, value: "button1", className: "startbutton" },
+        question.answers[0]
       ),
       _react2.default.createElement(
         "button",
-        { onClick: updateIndex, className: "startbutton" },
-        question.answers[1],
-        question.scores[1]
+        { onClick: function onClick() {
+            return updateIndex(question.scores[1]);
+          }, value: "button2", className: "startbutton" },
+        question.answers[1]
       )
     )
   );
@@ -19964,6 +19977,10 @@ var _Display = __webpack_require__(40);
 
 var _Display2 = _interopRequireDefault(_Display);
 
+var _GameOver = __webpack_require__(96);
+
+var _GameOver2 = _interopRequireDefault(_GameOver);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -24477,6 +24494,10 @@ var _Display = __webpack_require__(40);
 
 var _Display2 = _interopRequireDefault(_Display);
 
+var _GameOver = __webpack_require__(96);
+
+var _GameOver2 = _interopRequireDefault(_GameOver);
+
 var _api = __webpack_require__(89);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -24497,14 +24518,15 @@ var Board = function (_React$Component) {
 
         _this.state = {
             //these are all the parts that will be changed as the game is played
-            totalscore: 1,
+            totalscore: 0,
             scores: [],
             // questionId: 0,
             questions: [],
             question: '',
             answers: [],
             currentQuestionObject: null,
-            index: 0
+            index: 0,
+            gameOver: false
             //pause: false -- maybe
 
 
@@ -24513,21 +24535,21 @@ var Board = function (_React$Component) {
         _this.refreshBoard = _this.refreshBoard.bind(_this);
         _this.saveQuestions = _this.saveQuestions.bind(_this);
         _this.updateIndex = _this.updateIndex.bind(_this);
-        // this.clickButton = this.clickButton.bind(this)
-        // this.updateScore = this.updateScore.bind(this)
+        // this.gameOver = this.gameOver.bind(this)
+        _this.updateScore = _this.updateScore.bind(_this);
         return _this;
     }
 
     _createClass(Board, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log('Mount');
+            // console.log('Mount')
             this.refreshBoard();
         }
     }, {
         key: 'saveQuestions',
         value: function saveQuestions(questionsList) {
-            console.log('show me questionsList: ' + questionsList);
+            // console.log('show me questionsList: ' + questionsList)
 
             this.setState({
                 questions: questionsList,
@@ -24542,36 +24564,56 @@ var Board = function (_React$Component) {
             });
             (0, _api.getQuestions)(this.saveQuestions);
         }
+
+        // gameOver() {
+        //     this.setState({
+        //         gameOver: true
+
+        //     })
+        // }
+
+    }, {
+        key: 'updateScore',
+        value: function updateScore(value) {
+            console.log('updating score', value);
+
+            var updatedscore = this.state.totalscore + value;
+            this.setState({
+                totalscore: updatedscore
+            });
+        }
     }, {
         key: 'updateIndex',
-        value: function updateIndex() {
-            console.log("updating index");
-            var next = this.state.index + 1;
+        value: function updateIndex(score) {
+            console.log("updating index", score);
+            var next = this.state.index == this.state.questions.length - 1 ? gameOver() : this.state.index + 1;
 
             this.setState({
                 index: next
             });
+            this.updateScore(score);
         }
     }, {
         key: 'handleUpdate',
         value: function handleUpdate(index) {
-            console.log('handleUpdate index :' + index);
+            // console.log('handleUpdate index :' + index)
             // const {totalscore, question, answers} = this.state
 
             if (this.state.questions.length > 0) {
                 return _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex })
+                    _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex, totalscore: this.state.totalscore })
                 );
             }
         }
     }, {
         key: 'render',
         value: function render() {
-
+            var totalscore = this.state.totalscore;
             //    if (questionsId == 13) return 
 
+            console.log("This is totalscore, ", totalscore);
             return _react2.default.createElement(
                 'div',
                 { className: 'game' },
@@ -26664,6 +26706,65 @@ Agent.prototype._setDefaults = function(req) {
 
 module.exports = Agent;
 
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GameOver = function GameOver() {
+    return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+            'div',
+            { className: 'welcome' },
+            _react2.default.createElement(
+                'div',
+                { className: 'welcometext' },
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'GAME OVER'
+                ),
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Consult your nearest handbook...'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'welcomebuttonspace' },
+            _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/bcg3000' },
+                _react2.default.createElement(
+                    'button',
+                    { className: 'startbutton' },
+                    'Play again'
+                )
+            )
+        )
+    );
+};
+
+exports.default = GameOver;
 
 /***/ })
 /******/ ]);

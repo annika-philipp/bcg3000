@@ -31,7 +31,7 @@ body {
 
 .question {
     width: 80%;
-    font-family: 'Geo', serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 4em;
     color: white;
     margin: 20px auto 20px auto;
@@ -86,7 +86,7 @@ h2 {
     border-radius: .3em;
     color: white;
     text-align: center;
-    font-family: 'Geo', serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 3em;
     align-items: center;
 }
@@ -110,7 +110,7 @@ h2 {
     font-size: .8em;
     text-transform: none;
     margin: 0 auto 10px auto;
-    font-family: 'Geo', serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 2em;
 
 

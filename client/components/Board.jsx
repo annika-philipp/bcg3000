@@ -4,8 +4,10 @@ import ReactDOM from 'react-dom'
 
 import Score from './Score'
 import Display from './Display'
+import GameOver from './GameOver'
 
 import {getQuestions} from '../api'
+
 
 class Board extends React.Component {
     constructor(props) {
@@ -13,14 +15,15 @@ class Board extends React.Component {
 
         this.state = {
             //these are all the parts that will be changed as the game is played
-            totalscore: 1,
+            totalscore: 0,
             scores: [],
             // questionId: 0,
             questions: [],
             question: '',
             answers: [],
             currentQuestionObject: null, 
-            index: 0
+            index: 0,
+            gameOver: false
             //pause: false -- maybe
 
 
@@ -29,17 +32,17 @@ class Board extends React.Component {
         this.refreshBoard = this.refreshBoard.bind(this)
         this.saveQuestions = this.saveQuestions.bind(this)
         this.updateIndex = this.updateIndex.bind(this)
-        // this.clickButton = this.clickButton.bind(this)
-        // this.updateScore = this.updateScore.bind(this)
+        // this.gameOver = this.gameOver.bind(this)
+        this.updateScore = this.updateScore.bind(this)
     }
 
     componentDidMount() {
-        console.log('Mount')
+        // console.log('Mount')
         this.refreshBoard()
     }
 
     saveQuestions(questionsList) {
-        console.log('show me questionsList: ' + questionsList)
+        // console.log('show me questionsList: ' + questionsList)
         
         this.setState({
             questions: questionsList,
@@ -57,24 +60,46 @@ class Board extends React.Component {
         
     }
 
-    updateIndex () {
-    console.log("updating index")
-    var next = this.state.index + 1
+    // gameOver() {
+    //     this.setState({
+    //         gameOver: true
 
+    //     })
+    // }
+
+    updateScore(value) {
+        console.log('updating score', value)
+
+        var updatedscore = this.state.totalscore + value
+        this.setState({
+            totalscore: updatedscore
+        })
+    }
+
+    updateIndex (score) {
+    console.log("updating index", score)
+    var next = this.state.index == this.state.questions.length -1 ? gameOver() : this.state.index + 1
+
+    
     this.setState({
-        index: next
+        index: next,
     })
+    this.updateScore(score)
 
     }
 
     handleUpdate (index) {
-        console.log('handleUpdate index :' + index)
+        // console.log('handleUpdate index :' + index)
         // const {totalscore, question, answers} = this.state
 
         if(this.state.questions.length > 0) {
             return (
                 <div>
-                     <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} />
+                     <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} totalscore={this.state.totalscore} />
+                     {/* {gameOver
+                    ? <GameOver />
+                    : <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} />
+                }  */}
                 </div>    
             )}
 
@@ -87,9 +112,9 @@ class Board extends React.Component {
 
 
     render () {
-
+        const {totalscore} = this.state
     //    if (questionsId == 13) return 
-
+     console.log("This is totalscore, ", totalscore)
         return (
         <div className="game">
             {/* <Score updateScore={this.updateScore}/> */}

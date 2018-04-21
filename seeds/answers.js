@@ -17,6 +17,18 @@ exports.seed = function(knex, Promise) {
         {id: 10, answer: "ming.animals = ['cats', 'dogs', 'cows']", question_id: 5, score: +5},
         {id: 11, answer: 'mainly empty, mostly broken...', question_id: 6, score: -20},
         {id: 12, answer: '.then(doSomething) \n.catch(error and deal with it)', question_id: 6, score: +10},
+        {id: 13, answer: 'Ableton', question_id: 7, score: -20},
+        {id: 14, answer: 'Abletech', question_id: 7, score: +10},
+        {id: 15, answer: '...something something country', question_id: 8, score: +5},
+        {id: 16, answer: '...something something state', question_id: 8, score: +10},
+        {id: 17, answer: 'A translator for your client- and server-sides', question_id: 9, score: +5},
+        {id: 18, answer: 'A Perplexing Instance', question_id: 9, score: -20},
+        {id: 19, answer: 'Lamb Curry', question_id: 10, score: -5},
+        {id: 20, answer: 'Haskell Curry', question_id: 10, score: +10},
+        // {id: 21, answer: 'A translator for your client- and server-sides', question_id: 9, score: +5},
+        // {id: 22, answer: 'A Perplexing Instance', question_id: 9, score: -20},
+        // {id: 23, answer: 'Lamb Curry', question_id: 10, score: -5},
+        // {id: 24, answer: 'Haskell Curry', question_id: 10, score: +10},
       ]);
     });
 };
