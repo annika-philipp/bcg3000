@@ -7,7 +7,7 @@ const Welcome = ({startGame}) => {
     return (<div className="container">
                 <div className="welcome">
                     <h3>Welcome to 6 weeks</h3>
-                    <h3>of fun(ctions)</h3> 
+                    <h3>of fun...</h3> 
                 </div>  
                 <div className='row'>  
                 {/* <Link to = {'/bcg3000'}><button className="startbutton">Start Game</button></Link> */}

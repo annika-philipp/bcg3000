@@ -24483,7 +24483,7 @@ var Welcome = function Welcome(_ref) {
             _react2.default.createElement(
                 'h3',
                 null,
-                'of fun(ctions)'
+                'of fun...'
             )
         ),
         _react2.default.createElement(
@@ -24629,10 +24629,10 @@ var GameOver = function GameOver(_ref) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'welcome' },
+        { className: 'conatiner' },
         _react2.default.createElement(
             'div',
-            { className: 'welcometext' },
+            { className: 'welcome' },
             _react2.default.createElement(
                 'h3',
                 null,
@@ -24645,9 +24645,13 @@ var GameOver = function GameOver(_ref) {
             )
         ),
         _react2.default.createElement(
-            'button',
-            { onClick: resetGame, className: 'startbutton' },
-            'Play again'
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+                'button',
+                { onClick: resetGame, className: 'startbutton' },
+                'Play again'
+            )
         )
     );
 };
