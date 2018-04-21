@@ -41,34 +41,22 @@ router.get('/', (req, res) => {
     })
 })
 
-// router.get('/gameover' (req, res) => {
-// res.
+router.get('/scores', (req, res) => {
+    db.getScores()
+    .then(scores => {
+        res.json(scores)
+    })
+    .catch(err => {
+        res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
 
-// })
-// router.get('/1', (req, res) => {
-//     db.getAnswers()
-//     .then(answers => {
-//         res.json(answers)
-//     })
-//     .catch(err => {
-//         res.status(500).send('DATABASE ERROR: ' + err.message)
-//     })
-// })
-
-//stretch don't forget to give actual patch
-// router.get('#', (req, res) => {
-//     db.getScores()
-//     .then(scores => {
-//         res.json(scores)
-//     })
-//     .catch(err => {
-//         res.status(500).send('DATABASE ERROR: ' + err.message)
-//     })
-// })
-
-// router.post('#', (req, res) => {
-//     db.addScore()
-//     .then(() =>)
-// })
+router.post('/scores', (req, res) => {
+    const newScore = req.body
+    db.addScore(newScore)
+    .then(scoreIds => {
+        res.json({scoreIds: {id:scoreIds[0]}}) //check why like this
+    })
+})
 
 module.exports = router

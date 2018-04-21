@@ -6,6 +6,7 @@ import Welcome from './Welcome'
 import Score from './Score'
 import Display from './Display'
 import GameOver from './GameOver'
+import PlayAgain from './PlayAgain'
 
 import {getQuestions} from '../api'
 
@@ -142,7 +143,7 @@ class App extends React.Component {
                 <h1>BCG 3000</h1>
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
-            {this.state.gameOver && <GameOver resetGame={this.resetGame}/>}
+            {this.state.gameOver && <PlayAgain resetGame={this.resetGame}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>
