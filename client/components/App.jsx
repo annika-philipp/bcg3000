@@ -36,7 +36,7 @@ class App extends React.Component {
         // this.gameOver = this.gameOver.bind(this)
         this.updateScore = this.updateScore.bind(this)
         this.startGame = this.startGame.bind(this)
-        // this.resetGame = this.resetGame.bind(this)
+        this.resetGame = this.resetGame.bind(this)
     }
 
     componentDidMount() {
@@ -63,21 +63,18 @@ class App extends React.Component {
         
     }
 
-    // resetGame() {
-    //     this.setState({
-    //         totalscore: 0,
-    //         scores: [],
-    //         questions: [],
-    //         question: '',
-    //         answers: [],
-    //         currentQuestionObject: null, 
-    //         index: 0,
-    //         beforeGame: true,
-    //         gamePlaying: false,
-    //         gameOver: false
-    //     })
-
-    // }
+    resetGame() {
+        this.setState({
+            totalscore: 0,
+            scores: [],
+            question: '',
+            answers: [],
+            index: 0,
+            beforeGame: true,
+            gamePlaying: false,
+            gameOver: false
+        })
+    }
 
     startGame() {
         this.setState({
@@ -130,7 +127,7 @@ class App extends React.Component {
 
 
     }
-
+    
 
 
   
@@ -145,7 +142,7 @@ class App extends React.Component {
                 <h1>BCG 3000</h1>
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
-            {this.state.gameOver && <GameOver startGame={this.startGame}/>}
+            {this.state.gameOver && <GameOver resetGame={this.resetGame}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>
