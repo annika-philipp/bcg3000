@@ -3,23 +3,15 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
 
-const GameOver = () => {
-    return (<div className="container">
-                <div className="welcome">
+const GameOver = ({startGame}) => {
+    return (<div className="welcome">
                     <div className="welcometext">
-                        <h2>GAME OVER</h2>
-                        <h2>Consult your nearest handbook...</h2> 
+                        <h3>GAME OVER</h3>
+                        <h3>Consult your nearest handbook...</h3> 
                     </div>
-                </div>  
-                <div className='welcomebuttonspace'>  
-                <Link to = {'/bcg3000'}><button className="startbutton">Play again</button></Link>
+                <button onClick={startGame} className="startbutton">Play again</button>
                 </div>
-            </div>    
-
     )
-
-
-
 }
 
 export default GameOver
