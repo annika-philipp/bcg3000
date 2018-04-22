@@ -20161,7 +20161,7 @@ var App = function (_React$Component) {
                     )
                 ),
                 this.state.beforeGame && _react2.default.createElement(_Welcome2.default, { startGame: this.startGame }),
-                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { resetGame: this.resetGame }),
+                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { resetGame: this.resetGame, totalscore: this.state.totalscore }),
                 _react2.default.createElement(
                     'div',
                     { className: 'game' },
@@ -24832,7 +24832,13 @@ var AddScore = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'form',
-                        { onSubmit: this.addScore, className: 'welcome' },
+                        { onSubmit: this.addScore },
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'Your totalscore is: ',
+                            this.props.totalscore
+                        ),
                         _react2.default.createElement(
                             'p',
                             null,
@@ -24840,6 +24846,15 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.props.resetGame, className: 'button' },
+                        'Play again'
                     )
                 )
             );

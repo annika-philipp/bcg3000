@@ -215,7 +215,7 @@ class App extends React.Component {
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
             {/* {this.state.gameOver && <AddScore topScores={this.state.topScores} score={this.state.totalscore} isTopScore = {this.state.isTopScore} refreshScores ={this.refreshScores}/>} */}
-            {this.state.gameOver && <AddScore resetGame={this.resetGame}/>}
+            {this.state.gameOver && <AddScore resetGame={this.resetGame} totalscore={this.state.totalscore}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>
