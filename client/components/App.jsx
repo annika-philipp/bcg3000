@@ -18,7 +18,7 @@ class App extends React.Component {
         this.state = {
             // topScores: [],
             totalscore: 0,
-            scores: [],
+            topScores: [],
             questions: [],
             question: '',
             answers: [],
@@ -27,7 +27,8 @@ class App extends React.Component {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
-            isNotNegative: true
+            isNotNegative: true,
+            isTopScore: false
             // player: ''
             //pause: false -- maybe
 
@@ -40,11 +41,10 @@ class App extends React.Component {
         this.updateScore = this.updateScore.bind(this)
         this.startGame = this.startGame.bind(this)
         this.resetGame = this.resetGame.bind(this)
-        // this.checkNotNegative - this.checkNotNegative.bind(this)
-        // this.checkScores = this.checkScores.bind(this)
-        // this.saveScores = this.saveScores.bind(this)
-        // this.checkScore = this.checkScore.bind(this)
-        // this.checkIfTopScore = this.checkIfTopScore.bind(this)
+        this.fetchScores = this.fetchScores.bind(this)
+        this.saveScores = this.saveScores.bind(this)
+        this.checkScore = this.checkScore.bind(this)
+        this.checkIfTopScore = this.checkIfTopScore.bind(this)
 
 
     }
@@ -77,7 +77,7 @@ class App extends React.Component {
     resetGame() {
         this.setState({
             totalscore: 0,
-            scores: [],
+            topScores: [],
             question: '',
             answers: [],
             index: 0,
@@ -106,64 +106,51 @@ class App extends React.Component {
         // this.checkScore()
     }
 
-    // checkScores () {
-    //     getScores(this.saveScores)
-    // }
+    fetchScores () {
+        getScores(this.saveScores)
+    }
 
-    // saveScores(scores) {
-    //     this.setState({
-    //         topScores: scores
-    //     })
-    // }
+    saveScores(scores) {
+        this.setState({
+            topScores: scores
+        })
+    }
 
-    // checkScore() {
-    //     getScores(this.checkIfTopScore)
-    // }
+    checkScore() {
+        getScores(this.checkIfTopScore)
+    }
 
-    // checkIfTopScore(scores) {
-    //     if(this.state.totalscore >= scores[8].scores) {
-    //         this.setState({isTopScore:true})
-    //     }
-    // }
+    checkIfTopScore(scores) {
+        if(this.state.totalscore >= scores[8].scores) {
+            this.setState({isTopScore:true})
+        }
+    }
 
-    // refreshScores() {
-    //     this.setState({
-    //         isTopScore:false
-    //     })
-    //     this.checkScores()
-    // }
+    refreshScores() {
+        this.setState({
+            isTopScore:false
+        })
+        this.fetchScores()
+    }
 
-    // checkNotNegative() {
-    //     var scorecheck = this.state.totalscore
-    //     console.log('Scorecheck: ', scorecheck)
-    //     if (this.state.totalscore < 0) {
-    //         console.log('noooo', this.state.totalscore)
-    //         this.setState ({
-    //             isNotNegative: false
-    //         })
-    //     }
-    //     else {
-    //         console.log ("Huzzah")
-    //         }
-    //     }
 
 
     updateScore(value) {
-        console.log('updating score', value)
+        // console.log('updating score', value)
 
         var updatedscore = this.state.totalscore + value
-        console.log('updatedscore, ', updatedscore)
+        // console.log('updatedscore, ', updatedscore)
         this.setState({
             totalscore: updatedscore
         }) 
         if (updatedscore < 0)  {
-            console.log('noooo', updatedscore)
+            // console.log('noooo', updatedscore)
             this.setState ({
                 isNotNegative: false
             })
         }
         else {
-            console.log ("Huzzah")
+            // console.log ("Huzzah")
             }
     }
 

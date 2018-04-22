@@ -2542,7 +2542,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getQuestions = getQuestions;
 exports.getScores = getScores;
-exports.addScore = addScore;
+exports.addScoreApi = addScoreApi;
 
 var _superagent = __webpack_require__(90);
 
@@ -2582,7 +2582,8 @@ function getScores(callback) {
 // var points = [40, 100, 1, 5, 25, 10];
 // points.sort(function(a, b){return b-a});
 
-function addScore(score, callback) {
+function addScoreApi(score, callback) {
+  console.log("score in api, ", score);
   _superagent2.default.post(scores).send(score).end(function (err, res) {
     callback(res);
   });
@@ -19959,7 +19960,7 @@ var App = function (_React$Component) {
         _this.state = {
             // topScores: [],
             totalscore: 0,
-            scores: [],
+            topScores: [],
             questions: [],
             question: '',
             answers: [],
@@ -19968,7 +19969,8 @@ var App = function (_React$Component) {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
-            isNotNegative: true
+            isNotNegative: true,
+            isTopScore: false
             // player: ''
             //pause: false -- maybe
 
@@ -19981,12 +19983,10 @@ var App = function (_React$Component) {
         _this.updateScore = _this.updateScore.bind(_this);
         _this.startGame = _this.startGame.bind(_this);
         _this.resetGame = _this.resetGame.bind(_this);
-        // this.checkNotNegative - this.checkNotNegative.bind(this)
-        // this.checkScores = this.checkScores.bind(this)
-        // this.saveScores = this.saveScores.bind(this)
-        // this.checkScore = this.checkScore.bind(this)
-        // this.checkIfTopScore = this.checkIfTopScore.bind(this)
-
+        _this.fetchScores = _this.fetchScores.bind(_this);
+        _this.saveScores = _this.saveScores.bind(_this);
+        _this.checkScore = _this.checkScore.bind(_this);
+        _this.checkIfTopScore = _this.checkIfTopScore.bind(_this);
 
         return _this;
     }
@@ -20020,7 +20020,7 @@ var App = function (_React$Component) {
         value: function resetGame() {
             this.setState({
                 totalscore: 0,
-                scores: [],
+                topScores: [],
                 question: '',
                 answers: [],
                 index: 0,
@@ -20050,66 +20050,55 @@ var App = function (_React$Component) {
             });
             // this.checkScore()
         }
-
-        // checkScores () {
-        //     getScores(this.saveScores)
-        // }
-
-        // saveScores(scores) {
-        //     this.setState({
-        //         topScores: scores
-        //     })
-        // }
-
-        // checkScore() {
-        //     getScores(this.checkIfTopScore)
-        // }
-
-        // checkIfTopScore(scores) {
-        //     if(this.state.totalscore >= scores[8].scores) {
-        //         this.setState({isTopScore:true})
-        //     }
-        // }
-
-        // refreshScores() {
-        //     this.setState({
-        //         isTopScore:false
-        //     })
-        //     this.checkScores()
-        // }
-
-        // checkNotNegative() {
-        //     var scorecheck = this.state.totalscore
-        //     console.log('Scorecheck: ', scorecheck)
-        //     if (this.state.totalscore < 0) {
-        //         console.log('noooo', this.state.totalscore)
-        //         this.setState ({
-        //             isNotNegative: false
-        //         })
-        //     }
-        //     else {
-        //         console.log ("Huzzah")
-        //         }
-        //     }
-
-
+    }, {
+        key: 'fetchScores',
+        value: function fetchScores() {
+            getScores(this.saveScores);
+        }
+    }, {
+        key: 'saveScores',
+        value: function saveScores(scores) {
+            this.setState({
+                topScores: scores
+            });
+        }
+    }, {
+        key: 'checkScore',
+        value: function checkScore() {
+            getScores(this.checkIfTopScore);
+        }
+    }, {
+        key: 'checkIfTopScore',
+        value: function checkIfTopScore(scores) {
+            if (this.state.totalscore >= scores[8].scores) {
+                this.setState({ isTopScore: true });
+            }
+        }
+    }, {
+        key: 'refreshScores',
+        value: function refreshScores() {
+            this.setState({
+                isTopScore: false
+            });
+            this.fetchScores();
+        }
     }, {
         key: 'updateScore',
         value: function updateScore(value) {
-            console.log('updating score', value);
+            // console.log('updating score', value)
 
             var updatedscore = this.state.totalscore + value;
-            console.log('updatedscore, ', updatedscore);
+            // console.log('updatedscore, ', updatedscore)
             this.setState({
                 totalscore: updatedscore
             });
             if (updatedscore < 0) {
-                console.log('noooo', updatedscore);
+                // console.log('noooo', updatedscore)
                 this.setState({
                     isNotNegative: false
                 });
             } else {
-                console.log("Huzzah");
+                // console.log ("Huzzah")
             }
         }
     }, {
@@ -24794,10 +24783,11 @@ var AddScore = function (_React$Component) {
 
         _this.state = {
             name: '',
-            score: _this.props.score
+            score: _this.props.totalscore
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.addScore = _this.addScore.bind(_this);
+        console.log("State in addscore: ", _this.state);
         return _this;
     }
 
@@ -24809,7 +24799,7 @@ var AddScore = function (_React$Component) {
     }, {
         key: 'addScore',
         value: function addScore(e) {
-            this.addScore(this.state, this.props.finishAdd);
+            (0, _api.addScoreApi)(this.state, this.props.refreshScores);
         }
     }, {
         key: 'render',
@@ -24837,7 +24827,7 @@ var AddScore = function (_React$Component) {
                             'p',
                             null,
                             'Your totalscore is: ',
-                            this.props.totalscore
+                            this.state.totalscore
                         ),
                         _react2.default.createElement(
                             'p',
