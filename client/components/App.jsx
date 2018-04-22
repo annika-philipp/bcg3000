@@ -8,7 +8,7 @@ import GameOver from './GameOver'
 // import PlayAgain from './PlayAgain'
 import AddScore from './AddScore'
 
-import {getQuestions, addScoreApi, getScores } from '../api'
+import {getQuestions, addScoreApi, getScoresApi } from '../api'
 
 
 class App extends React.Component {
@@ -105,36 +105,39 @@ class App extends React.Component {
             gameOver: true
 
         })
-        this.checkScore()
+        this.fetchScores()
     }
 
     fetchScores () {
-        getScores(this.saveScores)
+        getScoresApi(this.saveScores)
         console.log("Hello from fetchSCores")
     }
 
-    saveScores(topScores) {
-        console.log("huh", topscores)
+    saveScores(topScoresApi) {
+        console.log("huh", topScoresApi)
         this.setState({
-            topScores: topScores
+            topScores: topScoresApi
         })
-        console.log("yay", {topScores})
+        console.log("yay", this.state.topScores)
+        this.checkScore()
     }
 
     checkScore() {
-        getScores(this.checkIfTopScore)
+        getScoresApi(this.checkIfTopScore)
         console.log("Hello from checkScores")
 
     }
 
-    checkIfTopScore(scores) {
+    checkIfTopScore(topScoresApi) {
         // console.log('CHeck')
         console.log("Topscores" , this.state.topScores)
         console.log("topScores[9].score", this.state.topScores[9].score)
-        if(this.state.totalscore > topScores[9].score) {
-            this.setState({isTopScore:true})
+        if(this.state.totalscore > this.state.topScores[9].score) {
+            this.setState({
+                isTopScore:true
+            })
         }
-        console.log({isTopScore})
+        console.log(this.state.isTopScore)
     }
 
     refreshScores() {
@@ -213,7 +216,7 @@ class App extends React.Component {
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
             {/* {this.state.gameOver && <AddScore topScores={this.state.topScores} isTopScore = {this.state.isTopScore} refreshScores ={this.refreshScores}/>} */}
-            {this.state.gameOver && <AddScore isTopScore={this.state.isTopScore} resetGame={this.resetGame} refreshScores ={this.refreshScores} totalscore={this.state.totalscore}/>}
+            {this.state.gameOver && <AddScore isTopScore={this.state.isTopScore} topScores={this.state.topScores} resetGame={this.resetGame} refreshScores ={this.refreshScores} totalscore={this.state.totalscore}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>

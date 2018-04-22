@@ -2541,10 +2541,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getQuestions = getQuestions;
-exports.getScores = getScores;
+exports.getScoresApi = getScoresApi;
 exports.addScoreApi = addScoreApi;
 
-var _superagent = __webpack_require__(90);
+var _superagent = __webpack_require__(91);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -2564,20 +2564,20 @@ function getQuestions(callback) {
   });
 }
 
-function getScores(callback) {
+function getScoresApi(callback) {
   _superagent2.default.get(scores).then(function (items) {
     console.log("items.body ", items.body);
     var data = items.body;
     var scoreList = data.sort(function (a, b) {
       return b.score - a.score;
     });
-    var topScores = [];
+    var topScoresApi = [];
     for (var i = 0; i < 10; i++) {
-      topScores.push(scoreList[i]);
+      topScoresApi.push(scoreList[i]);
     }
     console.log({ scoreList: scoreList });
-    // console.log("Topscores, ", topScores)
-    callback(topScores);
+    console.log("Api Topscores, ", topScoresApi);
+    callback(topScoresApi);
   });
 }
 
@@ -20053,39 +20053,42 @@ var App = function (_React$Component) {
                 gameOver: true
 
             });
-            this.checkScore();
+            this.fetchScores();
         }
     }, {
         key: 'fetchScores',
         value: function fetchScores() {
-            (0, _api.getScores)(this.saveScores);
+            (0, _api.getScoresApi)(this.saveScores);
             console.log("Hello from fetchSCores");
         }
     }, {
         key: 'saveScores',
-        value: function saveScores(topScores) {
-            console.log("huh", topscores);
+        value: function saveScores(topScoresApi) {
+            console.log("huh", topScoresApi);
             this.setState({
-                topScores: topScores
+                topScores: topScoresApi
             });
-            console.log("yay", { topScores: topScores });
+            console.log("yay", this.state.topScores);
+            this.checkScore();
         }
     }, {
         key: 'checkScore',
         value: function checkScore() {
-            (0, _api.getScores)(this.checkIfTopScore);
+            (0, _api.getScoresApi)(this.checkIfTopScore);
             console.log("Hello from checkScores");
         }
     }, {
         key: 'checkIfTopScore',
-        value: function checkIfTopScore(scores) {
+        value: function checkIfTopScore(topScoresApi) {
             // console.log('CHeck')
             console.log("Topscores", this.state.topScores);
             console.log("topScores[9].score", this.state.topScores[9].score);
-            if (this.state.totalscore > topScores[9].score) {
-                this.setState({ isTopScore: true });
+            if (this.state.totalscore > this.state.topScores[9].score) {
+                this.setState({
+                    isTopScore: true
+                });
             }
-            console.log({ isTopScore: isTopScore });
+            console.log(this.state.isTopScore);
         }
     }, {
         key: 'refreshScores',
@@ -20163,7 +20166,7 @@ var App = function (_React$Component) {
                     )
                 ),
                 this.state.beforeGame && _react2.default.createElement(_Welcome2.default, { startGame: this.startGame }),
-                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { isTopScore: this.state.isTopScore, resetGame: this.resetGame, refreshScores: this.refreshScores, totalscore: this.state.totalscore }),
+                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { isTopScore: this.state.isTopScore, topScores: this.state.topScores, resetGame: this.resetGame, refreshScores: this.refreshScores, totalscore: this.state.totalscore }),
                 _react2.default.createElement(
                     'div',
                     { className: 'game' },
@@ -24774,7 +24777,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Scoreboard = __webpack_require__(96);
+var _Scoreboard = __webpack_require__(90);
 
 var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
 
@@ -24843,7 +24846,7 @@ var AddScore = function (_React$Component) {
                         'Your totalscore is: ',
                         this.state.score
                     ),
-                    _react2.default.createElement(
+                    this.props.isTopScore ? _react2.default.createElement(
                         'form',
                         { onSubmit: this.addScore },
                         _react2.default.createElement(
@@ -24853,7 +24856,14 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+                    ) : _react2.default.createElement(
+                        'p',
+                        null,
+                        'hello world'
                     )
+                    //add timer
+                    // <Scoreboard topScores={this.props.topScores}/>
+
                 ),
                 _react2.default.createElement(
                     'div',
@@ -24877,6 +24887,54 @@ exports.default = AddScore;
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Scoreboard = function Scoreboard(_ref) {
+    var topScores = _ref.topScores;
+
+    return _react2.default.createElement(
+        "div",
+        { className: "container" },
+        _react2.default.createElement(
+            "div",
+            { className: "welcome" },
+            _react2.default.createElement(
+                "h3",
+                null,
+                "Top Scores"
+            ),
+            undefined.props.topScores.map(function (score) {
+                return [_react2.default.createElement(
+                    "h3",
+                    null,
+                    " ",
+                    score.score,
+                    " - ",
+                    score.name,
+                    " "
+                )];
+            })
+        )
+    );
+};
+
+exports.default = Scoreboard;
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /**
  * Root reference for iframes.
  */
@@ -24891,11 +24949,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(91);
-var RequestBase = __webpack_require__(92);
+var Emitter = __webpack_require__(92);
+var RequestBase = __webpack_require__(93);
 var isObject = __webpack_require__(40);
-var ResponseBase = __webpack_require__(93);
-var Agent = __webpack_require__(95);
+var ResponseBase = __webpack_require__(94);
+var Agent = __webpack_require__(96);
 
 /**
  * Noop.
@@ -25800,7 +25858,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -25969,7 +26027,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26670,7 +26728,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26680,7 +26738,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(94);
+var utils = __webpack_require__(95);
 
 /**
  * Expose `ResponseBase`.
@@ -26811,7 +26869,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26889,7 +26947,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -26913,54 +26971,6 @@ Agent.prototype._setDefaults = function(req) {
 
 module.exports = Agent;
 
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Scoreboard = function Scoreboard(_ref) {
-    var topScores = _ref.topScores;
-
-    return _react2.default.createElement(
-        "div",
-        { className: "container" },
-        _react2.default.createElement(
-            "div",
-            { className: "welcome" },
-            _react2.default.createElement(
-                "h3",
-                null,
-                "Top Scores"
-            ),
-            undefined.props.topScores.map(function (score) {
-                return [_react2.default.createElement(
-                    "h3",
-                    null,
-                    " ",
-                    score.score,
-                    " - ",
-                    score.name,
-                    " "
-                )];
-            })
-        )
-    );
-};
-
-exports.default = Scoreboard;
 
 /***/ })
 /******/ ]);

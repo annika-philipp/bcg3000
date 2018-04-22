@@ -18,7 +18,7 @@ export function getQuestions (callback) {
       })
 }
 
-export function getScores (callback) {
+export function getScoresApi (callback) {
   request
   .get(scores)
   .then(items => {
@@ -27,13 +27,13 @@ export function getScores (callback) {
     let scoreList = data.sort(function(a,b) {
       return b.score - a.score
     })
-    var topScores = []
+    var topScoresApi = []
     for (var i = 0; i < 10; i++){
-      topScores.push(scoreList[i])
+      topScoresApi.push(scoreList[i])
     }
     console.log({scoreList})
-    // console.log("Topscores, ", topScores)
-    callback(topScores)
+    console.log("Api Topscores, ", topScoresApi)
+    callback(topScoresApi)
   }) 
 
 }
