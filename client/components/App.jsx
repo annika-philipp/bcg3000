@@ -27,6 +27,7 @@ class App extends React.Component {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
+            isNotNegative: true
             // player: ''
             //pause: false -- maybe
 
@@ -39,6 +40,7 @@ class App extends React.Component {
         this.updateScore = this.updateScore.bind(this)
         this.startGame = this.startGame.bind(this)
         this.resetGame = this.resetGame.bind(this)
+        // this.checkNotNegative - this.checkNotNegative.bind(this)
         // this.checkScores = this.checkScores.bind(this)
         // this.saveScores = this.saveScores.bind(this)
         // this.checkScore = this.checkScore.bind(this)
@@ -81,7 +83,8 @@ class App extends React.Component {
             index: 0,
             beforeGame: true,
             gamePlaying: false,
-            gameOver: false
+            gameOver: false,
+            isNotNegative: true
         })
     }
 
@@ -130,13 +133,38 @@ class App extends React.Component {
     //     this.checkScores()
     // }
 
+    // checkNotNegative() {
+    //     var scorecheck = this.state.totalscore
+    //     console.log('Scorecheck: ', scorecheck)
+    //     if (this.state.totalscore < 0) {
+    //         console.log('noooo', this.state.totalscore)
+    //         this.setState ({
+    //             isNotNegative: false
+    //         })
+    //     }
+    //     else {
+    //         console.log ("Huzzah")
+    //         }
+    //     }
+
+
     updateScore(value) {
         console.log('updating score', value)
 
         var updatedscore = this.state.totalscore + value
+        console.log('updatedscore, ', updatedscore)
         this.setState({
             totalscore: updatedscore
-        })
+        }) 
+        if (updatedscore < 0)  {
+            console.log('noooo', updatedscore)
+            this.setState ({
+                isNotNegative: false
+            })
+        }
+        else {
+            console.log ("Huzzah")
+            }
     }
 
     updateIndex (score) {
@@ -154,13 +182,20 @@ class App extends React.Component {
     handleUpdate (index) {
 
 
-        if(this.state.questions.length > 0) {
+        if(this.state.questions.length > 0 && this.state.isNotNegative) {
             return (
                 <div>
                      <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} totalscore={this.state.totalscore} />
                      
                 </div>    
             )}
+        if(this.state.questions.length > 0 && !this.state.isNotNegative) {
+            return (
+                <div>
+                    <GameOver resetGame={this.resetGame}/>
+                </div>
+            )
+        }    
 
 
     }

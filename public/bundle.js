@@ -19967,7 +19967,8 @@ var App = function (_React$Component) {
             index: 0,
             beforeGame: true,
             gamePlaying: false,
-            gameOver: false
+            gameOver: false,
+            isNotNegative: true
             // player: ''
             //pause: false -- maybe
 
@@ -19980,6 +19981,7 @@ var App = function (_React$Component) {
         _this.updateScore = _this.updateScore.bind(_this);
         _this.startGame = _this.startGame.bind(_this);
         _this.resetGame = _this.resetGame.bind(_this);
+        // this.checkNotNegative - this.checkNotNegative.bind(this)
         // this.checkScores = this.checkScores.bind(this)
         // this.saveScores = this.saveScores.bind(this)
         // this.checkScore = this.checkScore.bind(this)
@@ -20024,7 +20026,8 @@ var App = function (_React$Component) {
                 index: 0,
                 beforeGame: true,
                 gamePlaying: false,
-                gameOver: false
+                gameOver: false,
+                isNotNegative: true
             });
         }
     }, {
@@ -20075,15 +20078,39 @@ var App = function (_React$Component) {
         //     this.checkScores()
         // }
 
+        // checkNotNegative() {
+        //     var scorecheck = this.state.totalscore
+        //     console.log('Scorecheck: ', scorecheck)
+        //     if (this.state.totalscore < 0) {
+        //         console.log('noooo', this.state.totalscore)
+        //         this.setState ({
+        //             isNotNegative: false
+        //         })
+        //     }
+        //     else {
+        //         console.log ("Huzzah")
+        //         }
+        //     }
+
+
     }, {
         key: 'updateScore',
         value: function updateScore(value) {
             console.log('updating score', value);
 
             var updatedscore = this.state.totalscore + value;
+            console.log('updatedscore, ', updatedscore);
             this.setState({
                 totalscore: updatedscore
             });
+            if (updatedscore < 0) {
+                console.log('noooo', updatedscore);
+                this.setState({
+                    isNotNegative: false
+                });
+            } else {
+                console.log("Huzzah");
+            }
         }
     }, {
         key: 'updateIndex',
@@ -20100,11 +20127,18 @@ var App = function (_React$Component) {
         key: 'handleUpdate',
         value: function handleUpdate(index) {
 
-            if (this.state.questions.length > 0) {
+            if (this.state.questions.length > 0 && this.state.isNotNegative) {
                 return _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex, totalscore: this.state.totalscore })
+                );
+            }
+            if (this.state.questions.length > 0 && !this.state.isNotNegative) {
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(_GameOver2.default, { resetGame: this.resetGame })
                 );
             }
         }
@@ -24712,7 +24746,7 @@ var GameOver = function GameOver(_ref) {
             { className: 'row' },
             _react2.default.createElement(
                 'button',
-                { onClick: resetGame, className: 'startbutton' },
+                { onClick: resetGame, className: 'button' },
                 'Play again'
             )
         )

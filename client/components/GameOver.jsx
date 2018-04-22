@@ -10,7 +10,7 @@ const GameOver = ({resetGame}) => {
                     <h3>Consult your nearest handbook...</h3> 
                 </div>
                 <div className='row'>  
-                    <button onClick={resetGame} className="startbutton">Play again</button>
+                    <button onClick={resetGame} className="button">Play again</button>
                 </div>
             </div>
     )
