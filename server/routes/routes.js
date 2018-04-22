@@ -8,7 +8,7 @@ const db = require('../db/db')
 
 router.use(bodyParser.json())
 
-router.get('/', (req, res) => {
+router.get('/v1', (req, res) => {
     db.getQuestionsAndAnswers()
     .then(questions => {
          console.log('im here too', questions)
@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/scores', (req, res) => {
+router.get('/v2', (req, res) => {
     db.getScores()
     .then(scores => {
         res.json(scores)
@@ -51,11 +51,11 @@ router.get('/scores', (req, res) => {
     })
 })
 
-router.post('/scores', (req, res) => {
+router.post('/v2', (req, res) => {
     const newScore = req.body
     db.addScore(newScore)
     .then(scoreIds => {
-        res.json({scoreIds: {id:scoreIds[0]}}) //check why like this
+        res.json({scoreIds: {id:scoreIds[0]}}) //what the what is going on here?
     })
     .catch(err => {
         res.status(500).send('DATABASE ERROR: ' + err.message)

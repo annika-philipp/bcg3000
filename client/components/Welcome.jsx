@@ -10,8 +10,7 @@ const Welcome = ({startGame}) => {
                     <h3>of fun...</h3> 
                 </div>  
                 <div className='row'>  
-                {/* <Link to = {'/bcg3000'}><button className="startbutton">Start Game</button></Link> */}
-                <button onClick={startGame} className="startbutton">Start Game</button>
+                <button onClick={startGame} className="button">Start Game</button>
                 </div>
             </div>    
 

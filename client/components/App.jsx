@@ -3,10 +3,10 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Welcome from './Welcome'
-import Score from './Score'
 import Display from './Display'
 import GameOver from './GameOver'
-import PlayAgain from './PlayAgain'
+// import PlayAgain from './PlayAgain'
+import AddScore from './AddScore'
 
 import {getQuestions} from '../api'
 
@@ -16,6 +16,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            // topScores: [],
             totalscore: 0,
             scores: [],
             questions: [],
@@ -25,7 +26,8 @@ class App extends React.Component {
             index: 0,
             beforeGame: true,
             gamePlaying: false,
-            gameOver: false
+            gameOver: false,
+            // player: ''
             //pause: false -- maybe
 
 
@@ -34,10 +36,15 @@ class App extends React.Component {
         this.refreshBoard = this.refreshBoard.bind(this)
         this.saveQuestions = this.saveQuestions.bind(this)
         this.updateIndex = this.updateIndex.bind(this)
-        // this.gameOver = this.gameOver.bind(this)
         this.updateScore = this.updateScore.bind(this)
         this.startGame = this.startGame.bind(this)
         this.resetGame = this.resetGame.bind(this)
+        // this.checkScores = this.checkScores.bind(this)
+        // this.saveScores = this.saveScores.bind(this)
+        // this.checkScore = this.checkScore.bind(this)
+        // this.checkIfTopScore = this.checkIfTopScore.bind(this)
+
+
     }
 
     componentDidMount() {
@@ -64,6 +71,7 @@ class App extends React.Component {
         
     }
 
+
     resetGame() {
         this.setState({
             totalscore: 0,
@@ -80,8 +88,8 @@ class App extends React.Component {
     startGame() {
         this.setState({
             beforeGame: false,
-            gameOver: false,
-            gamePlaying: true
+            gamePlaying: true,
+            gameOver: false
         })
     }
 
@@ -92,7 +100,35 @@ class App extends React.Component {
             gameOver: true
 
         })
+        // this.checkScore()
     }
+
+    // checkScores () {
+    //     getScores(this.saveScores)
+    // }
+
+    // saveScores(scores) {
+    //     this.setState({
+    //         topScores: scores
+    //     })
+    // }
+
+    // checkScore() {
+    //     getScores(this.checkIfTopScore)
+    // }
+
+    // checkIfTopScore(scores) {
+    //     if(this.state.totalscore >= scores[8].scores) {
+    //         this.setState({isTopScore:true})
+    //     }
+    // }
+
+    // refreshScores() {
+    //     this.setState({
+    //         isTopScore:false
+    //     })
+    //     this.checkScores()
+    // }
 
     updateScore(value) {
         console.log('updating score', value)
@@ -143,7 +179,8 @@ class App extends React.Component {
                 <h1>BCG 3000</h1>
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
-            {this.state.gameOver && <PlayAgain resetGame={this.resetGame}/>}
+            {/* {this.state.gameOver && <AddScore topScores={this.state.topScores} score={this.state.totalscore} isTopScore = {this.state.isTopScore} refreshScores ={this.refreshScores}/>} */}
+            {this.state.gameOver && <AddScore resetGame={this.resetGame}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>

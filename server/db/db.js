@@ -25,6 +25,6 @@ function getScores (testConn) {
 
 function addScore (data, testConn) {
     const conn = testConn || connection
-    return conn('scores').insert({player: data.name, score: data.score})
+    return conn('scores').insert({name: data.name, score: data.score})
 }
 

@@ -14,8 +14,8 @@ const Display = ({question, updateIndex, totalscore}) => {
           </div> 
         </div>
         <div>   
-        <button onClick={() => updateIndex(question.scores[0])} value='button1' className="startbutton">{question.answers[0]}</button>
-        <button onClick={() => updateIndex(question.scores[1])} value="button2" className="startbutton">{question.answers[1]}</button>
+        <button onClick={() => updateIndex(question.scores[0])} value='button1' className="button">{question.answers[0]}</button>
+        <button onClick={() => updateIndex(question.scores[1])} value="button2" className="button">{question.answers[1]}</button>
         </div>
       </div>
     )
