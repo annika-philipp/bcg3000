@@ -2566,14 +2566,17 @@ function getQuestions(callback) {
 
 function getScores(callback) {
   _superagent2.default.get(scores).then(function (items) {
+    console.log("items.body ", items.body);
     var data = items.body;
-    var scoreList = data.scores.sort(function (a, b) {
-      return b.scores - a.scores;
+    var scoreList = data.sort(function (a, b) {
+      return b.score - a.score;
     });
     var topScores = [];
-    for (var i = 0; i < 9; i++) {
-      tenTopScores.push(scoreList[i]);
+    for (var i = 0; i < 10; i++) {
+      topScores.push(scoreList[i]);
     }
+    console.log({ scoreList: scoreList });
+    // console.log("Topscores, ", topScores)
     callback(topScores);
   });
 }
@@ -19976,6 +19979,7 @@ var App = function (_React$Component) {
 
 
         };
+        console.log(_this.state);
 
         _this.refreshBoard = _this.refreshBoard.bind(_this);
         _this.saveQuestions = _this.saveQuestions.bind(_this);
@@ -19987,6 +19991,7 @@ var App = function (_React$Component) {
         _this.saveScores = _this.saveScores.bind(_this);
         _this.checkScore = _this.checkScore.bind(_this);
         _this.checkIfTopScore = _this.checkIfTopScore.bind(_this);
+        _this.refreshScores = _this.refreshScores.bind(_this);
 
         return _this;
     }
@@ -20048,35 +20053,44 @@ var App = function (_React$Component) {
                 gameOver: true
 
             });
-            // this.checkScore()
+            this.checkScore();
         }
     }, {
         key: 'fetchScores',
         value: function fetchScores() {
-            getScores(this.saveScores);
+            (0, _api.getScores)(this.saveScores);
+            console.log("Hello from fetchSCores");
         }
     }, {
         key: 'saveScores',
-        value: function saveScores(scores) {
+        value: function saveScores(topScores) {
+            console.log("huh", topscores);
             this.setState({
-                topScores: scores
+                topScores: topScores
             });
+            console.log("yay", { topScores: topScores });
         }
     }, {
         key: 'checkScore',
         value: function checkScore() {
-            getScores(this.checkIfTopScore);
+            (0, _api.getScores)(this.checkIfTopScore);
+            console.log("Hello from checkScores");
         }
     }, {
         key: 'checkIfTopScore',
         value: function checkIfTopScore(scores) {
-            if (this.state.totalscore >= scores[8].scores) {
+            // console.log('CHeck')
+            console.log("Topscores", this.state.topScores);
+            console.log("topScores[9].score", this.state.topScores[9].score);
+            if (this.state.totalscore > topScores[9].score) {
                 this.setState({ isTopScore: true });
             }
+            console.log({ isTopScore: isTopScore });
         }
     }, {
         key: 'refreshScores',
         value: function refreshScores() {
+            console.log("Hello from refreshSCores");
             this.setState({
                 isTopScore: false
             });
@@ -20104,7 +20118,6 @@ var App = function (_React$Component) {
     }, {
         key: 'updateIndex',
         value: function updateIndex(score) {
-            console.log("updating index", score);
             var next = this.state.index == this.state.questions.length - 1 ? this.gameOver() : this.state.index + 1;
 
             this.setState({
@@ -20150,7 +20163,7 @@ var App = function (_React$Component) {
                     )
                 ),
                 this.state.beforeGame && _react2.default.createElement(_Welcome2.default, { startGame: this.startGame }),
-                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { resetGame: this.resetGame, totalscore: this.state.totalscore }),
+                this.state.gameOver && _react2.default.createElement(_AddScore2.default, { isTopScore: this.state.isTopScore, resetGame: this.resetGame, refreshScores: this.refreshScores, totalscore: this.state.totalscore }),
                 _react2.default.createElement(
                     'div',
                     { className: 'game' },
@@ -24761,6 +24774,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Scoreboard = __webpack_require__(96);
+
+var _Scoreboard2 = _interopRequireDefault(_Scoreboard);
+
 var _api = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -24821,14 +24838,14 @@ var AddScore = function (_React$Component) {
                         'Deploy yourself into phase 3'
                     ),
                     _react2.default.createElement(
+                        'p',
+                        null,
+                        'Your totalscore is: ',
+                        this.state.score
+                    ),
+                    _react2.default.createElement(
                         'form',
                         { onSubmit: this.addScore },
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Your totalscore is: ',
-                            this.state.totalscore
-                        ),
                         _react2.default.createElement(
                             'p',
                             null,
@@ -26896,6 +26913,54 @@ Agent.prototype._setDefaults = function(req) {
 
 module.exports = Agent;
 
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Scoreboard = function Scoreboard(_ref) {
+    var topScores = _ref.topScores;
+
+    return _react2.default.createElement(
+        "div",
+        { className: "container" },
+        _react2.default.createElement(
+            "div",
+            { className: "welcome" },
+            _react2.default.createElement(
+                "h3",
+                null,
+                "Top Scores"
+            ),
+            undefined.props.topScores.map(function (score) {
+                return [_react2.default.createElement(
+                    "h3",
+                    null,
+                    " ",
+                    score.score,
+                    " - ",
+                    score.name,
+                    " "
+                )];
+            })
+        )
+    );
+};
+
+exports.default = Scoreboard;
 
 /***/ })
 /******/ ]);

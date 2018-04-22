@@ -44,6 +44,7 @@ router.get('/v1', (req, res) => {
 router.get('/v2', (req, res) => {
     db.getScores()
     .then(scores => {
+        console.log("Helloooo", scores)
         res.json(scores)
     })
     .catch(err => {

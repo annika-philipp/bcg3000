@@ -1,4 +1,5 @@
 import React from 'react'
+import Scoreboard from './Scoreboard'
 
 import {addScoreApi} from '../api'
 
@@ -30,13 +31,16 @@ class AddScore extends React.Component {
         <div className="welcome">
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
+            <p>Your totalscore is: {this.state.score}</p>
+            {/* {this.props.isTopScore
+            ?  */}
             <form onSubmit={this.addScore}>
-            <p>Your totalscore is: {this.state.totalscore}</p>
-            {/* this is where I need to check if the totalscore is high enough, only display is true */}
-            <p>Add your name to the scoreboard</p>
+                <p>Add your name to the scoreboard</p>
                 <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
-            <input type='submit' value='Submit'/>
-        </form>
+                <input type ='submit' value='Submit'/>
+            </form>
+            {/* :
+            <Scoreboard topscores={this.props.topscores}/>} */}
         </div>
         <div className='row'>  
             <button onClick={this.props.resetGame} className="button">Play again</button>

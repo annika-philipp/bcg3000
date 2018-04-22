@@ -20,16 +20,19 @@ export function getQuestions (callback) {
 
 export function getScores (callback) {
   request
-  .get (scores)
+  .get(scores)
   .then(items => {
+    console.log("items.body ", items.body)
     let data  = items.body
-    let scoreList = data.scores.sort(function(a,b) {
-      return b.scores - a.scores
+    let scoreList = data.sort(function(a,b) {
+      return b.score - a.score
     })
     var topScores = []
-    for (var i = 0; i < 9; i++){
-      tenTopScores.push(scoreList[i])
+    for (var i = 0; i < 10; i++){
+      topScores.push(scoreList[i])
     }
+    console.log({scoreList})
+    // console.log("Topscores, ", topScores)
     callback(topScores)
   }) 
 

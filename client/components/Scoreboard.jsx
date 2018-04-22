@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Scoreboard = ({topscores}) => {
+const Scoreboard = ({topScores}) => {
     return (
         <div className="container">
             <div className="welcome">
                 <h3>Top Scores</h3>
-                {topscores.map(score => {
+                {this.props.topScores.map(score => {
                 return [
                    <h3> {score.score} - {score.name} </h3>
                 ]
@@ -18,3 +18,5 @@ const Scoreboard = ({topscores}) => {
 
 
 }
+
+export default Scoreboard

@@ -3,7 +3,7 @@ import React from 'react'
 import {addScore} from '../api'
 //if this doesn't work then stick with AddScore.jsx for now
 
-class AddScore extends React.Component {
+class AddScoreForm2 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -48,4 +48,4 @@ class AddScore extends React.Component {
     }
 }
 
-export default AddScore
+export default AddScoreForm2

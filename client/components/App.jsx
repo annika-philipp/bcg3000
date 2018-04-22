@@ -8,7 +8,7 @@ import GameOver from './GameOver'
 // import PlayAgain from './PlayAgain'
 import AddScore from './AddScore'
 
-import {getQuestions} from '../api'
+import {getQuestions, addScoreApi, getScores } from '../api'
 
 
 class App extends React.Component {
@@ -34,6 +34,7 @@ class App extends React.Component {
 
 
         }
+        console.log(this.state)
 
         this.refreshBoard = this.refreshBoard.bind(this)
         this.saveQuestions = this.saveQuestions.bind(this)
@@ -45,6 +46,7 @@ class App extends React.Component {
         this.saveScores = this.saveScores.bind(this)
         this.checkScore = this.checkScore.bind(this)
         this.checkIfTopScore = this.checkIfTopScore.bind(this)
+        this.refreshScores = this.refreshScores.bind(this)
 
 
     }
@@ -103,30 +105,40 @@ class App extends React.Component {
             gameOver: true
 
         })
-        // this.checkScore()
+        this.checkScore()
     }
 
     fetchScores () {
         getScores(this.saveScores)
+        console.log("Hello from fetchSCores")
     }
 
-    saveScores(scores) {
+    saveScores(topScores) {
+        console.log("huh", topscores)
         this.setState({
-            topScores: scores
+            topScores: topScores
         })
+        console.log("yay", {topScores})
     }
 
     checkScore() {
         getScores(this.checkIfTopScore)
+        console.log("Hello from checkScores")
+
     }
 
     checkIfTopScore(scores) {
-        if(this.state.totalscore >= scores[8].scores) {
+        // console.log('CHeck')
+        console.log("Topscores" , this.state.topScores)
+        console.log("topScores[9].score", this.state.topScores[9].score)
+        if(this.state.totalscore > topScores[9].score) {
             this.setState({isTopScore:true})
         }
+        console.log({isTopScore})
     }
 
     refreshScores() {
+        console.log("Hello from refreshSCores")
         this.setState({
             isTopScore:false
         })
@@ -155,7 +167,6 @@ class App extends React.Component {
     }
 
     updateIndex (score) {
-    console.log("updating index", score)
     var next = this.state.index == this.state.questions.length -1 ? this.gameOver() : this.state.index + 1
 
     
@@ -201,8 +212,8 @@ class App extends React.Component {
                 <h1>BCG 3000</h1>
             </div>  
             {this.state.beforeGame && <Welcome startGame={this.startGame} />}
-            {/* {this.state.gameOver && <AddScore topScores={this.state.topScores} score={this.state.totalscore} isTopScore = {this.state.isTopScore} refreshScores ={this.refreshScores}/>} */}
-            {this.state.gameOver && <AddScore resetGame={this.resetGame} totalscore={this.state.totalscore}/>}
+            {/* {this.state.gameOver && <AddScore topScores={this.state.topScores} isTopScore = {this.state.isTopScore} refreshScores ={this.refreshScores}/>} */}
+            {this.state.gameOver && <AddScore isTopScore={this.state.isTopScore} resetGame={this.resetGame} refreshScores ={this.refreshScores} totalscore={this.state.totalscore}/>}
             <div className="game">
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>
