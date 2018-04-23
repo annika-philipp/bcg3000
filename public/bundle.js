@@ -24807,7 +24807,6 @@ var AddScore = function (_React$Component) {
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.addScore = _this.addScore.bind(_this);
-        console.log("State in addscore: ", _this.state);
         return _this;
     }
 
@@ -24898,7 +24897,7 @@ var Scoreboard = function Scoreboard(_ref) {
                 null,
                 "Top Scores"
             ),
-            topScores.map(function (score) {
+            undefined.topScores.map(function (score) {
                 return [_react2.default.createElement(
                     "h3",
                     null,

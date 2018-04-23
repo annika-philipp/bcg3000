@@ -12,7 +12,6 @@ class AddScore extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.addScore = this.addScore.bind(this)
-        console.log("State in addscore: ", this.state)
     }
 
     handleChange (e) {
@@ -32,7 +31,6 @@ class AddScore extends React.Component {
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
             <p>Your totalscore is: {this.state.score}</p>
-            {/* <Scoreboard topScores={this.props.topScores} /> */}
             <form onSubmit={this.addScore}>
                 <p>Add your name to the scoreboard</p>
                 <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
@@ -40,19 +38,7 @@ class AddScore extends React.Component {
             </form>
             {/* {this.props.isTopScore}
             {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
-            {/* {this.props.isTopScore
-            ?  
-            <form onSubmit={this.addScore}>
-                <p>Add your name to the scoreboard</p>
-                <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
-                <input type ='submit' value='Submit'/>
-            </form>
-            :
-            <p>hello world</p>
-            //add timer
-            // <Scoreboard topScores={this.props.topScores}/>
-            }
-        </div> */}
+           
         {/* <div className='row'>  
             <button onClick={this.props.resetGame} className="button">Play again</button>
         </div> */}

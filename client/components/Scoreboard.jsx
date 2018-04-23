@@ -5,7 +5,7 @@ const Scoreboard = ({topScores}) => {
         <div className="container">
             <div className="welcome">
                 <h3>Top Scores</h3>
-                {topScores.map(score => {
+                {this.topScores.map(score => {
                 return [
                    <h3> {score.score} - {score.name} </h3>
                 ]
