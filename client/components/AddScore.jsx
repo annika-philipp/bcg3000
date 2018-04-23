@@ -36,6 +36,7 @@ class AddScore extends React.Component {
                 <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
                 <input type ='submit' value='Submit'/>
             </form>
+            {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>}
             {/* {this.props.isTopScore}
             {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
            

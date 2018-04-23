@@ -20080,7 +20080,7 @@ var App = function (_React$Component) {
     }, {
         key: 'checkIfTopScore',
         value: function checkIfTopScore(topScoresApi) {
-            // console.log('CHeck')
+            console.log('CHeck');
             console.log("Topscores", this.state.topScores);
             console.log("topScores[9].score", this.state.topScores[9].score);
             if (this.state.totalscore > this.state.topScores[9].score) {
@@ -24855,7 +24855,8 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
-                    )
+                    ),
+                    this.props.topScores.length > 0 && _react2.default.createElement(_Scoreboard2.default, { topScores: this.props.topScores })
                 )
             );
         }
@@ -24897,7 +24898,7 @@ var Scoreboard = function Scoreboard(_ref) {
                 null,
                 "Top Scores"
             ),
-            undefined.topScores.map(function (score) {
+            topScores.map(function (score) {
                 return [_react2.default.createElement(
                     "h3",
                     null,

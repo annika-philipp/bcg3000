@@ -129,7 +129,7 @@ class App extends React.Component {
     }
 
     checkIfTopScore(topScoresApi) {
-        // console.log('CHeck')
+        console.log('CHeck')
         console.log("Topscores" , this.state.topScores)
         console.log("topScores[9].score", this.state.topScores[9].score)
         if(this.state.totalscore > this.state.topScores[9].score) {
