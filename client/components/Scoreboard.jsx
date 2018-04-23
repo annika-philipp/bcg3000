@@ -2,15 +2,19 @@ import React from 'react'
 
 const Scoreboard = ({topScores}) => {
     return (
-        <div className="container">
-            <div className="welcome">
-                <h3>Top Scores</h3>
+        <div>
+            <div className="scoreboard">
+                <h4>Top Scores</h4>
+                <div className="topscores">
+                <div className="topscoresnames">
                 {topScores.map(score => {
                 return [
-                   <h3> {score.score} - {score.name} </h3>
+                   <p> {score.score} - {score.name} </p>
                 ]
             
                 })}
+                </div>
+                </div>
             </div>
 
         </div>    

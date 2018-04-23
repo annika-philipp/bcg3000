@@ -24889,26 +24889,34 @@ var Scoreboard = function Scoreboard(_ref) {
 
     return _react2.default.createElement(
         "div",
-        { className: "container" },
+        null,
         _react2.default.createElement(
             "div",
-            { className: "welcome" },
+            { className: "scoreboard" },
             _react2.default.createElement(
-                "h3",
+                "h4",
                 null,
                 "Top Scores"
             ),
-            topScores.map(function (score) {
-                return [_react2.default.createElement(
-                    "h3",
-                    null,
-                    " ",
-                    score.score,
-                    " - ",
-                    score.name,
-                    " "
-                )];
-            })
+            _react2.default.createElement(
+                "div",
+                { className: "topscores" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "topscoresnames" },
+                    topScores.map(function (score) {
+                        return [_react2.default.createElement(
+                            "p",
+                            null,
+                            " ",
+                            score.score,
+                            " - ",
+                            score.name,
+                            " "
+                        )];
+                    })
+                )
+            )
         )
     );
 };
