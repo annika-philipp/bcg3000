@@ -24606,7 +24606,7 @@ var Welcome = function Welcome(_ref) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'container' },
+        null,
         _react2.default.createElement(
             'div',
             { className: 'welcome' },
@@ -24825,7 +24825,7 @@ var AddScore = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'container' },
+                null,
                 _react2.default.createElement(
                     'div',
                     { className: 'welcome' },
@@ -24855,8 +24855,7 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
-                    ),
-                    this.props.topScores.length > 0 && _react2.default.createElement(_Scoreboard2.default, { topScores: this.props.topScores })
+                    )
                 )
             );
         }
@@ -24894,28 +24893,28 @@ var Scoreboard = function Scoreboard(_ref) {
             "div",
             { className: "scoreboard" },
             _react2.default.createElement(
-                "h4",
+                "h3",
                 null,
                 "Top Scores"
             ),
             _react2.default.createElement(
                 "div",
                 { className: "topscores" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "topscoresnames" },
-                    topScores.map(function (score) {
-                        return [_react2.default.createElement(
-                            "p",
+                topScores.map(function (score) {
+                    return [_react2.default.createElement(
+                        "div",
+                        { className: "topscoresnames" },
+                        _react2.default.createElement(
+                            "h4",
                             null,
                             " ",
                             score.score,
                             " - ",
                             score.name,
                             " "
-                        )];
-                    })
-                )
+                        )
+                    )];
+                })
             )
         )
     );

@@ -4,16 +4,16 @@ const Scoreboard = ({topScores}) => {
     return (
         <div>
             <div className="scoreboard">
-                <h4>Top Scores</h4>
+                <h3>Top Scores</h3>
                 <div className="topscores">
-                <div className="topscoresnames">
                 {topScores.map(score => {
                 return [
-                   <p> {score.score} - {score.name} </p>
+                    <div className="topscoresnames">
+                   <h4> {score.score} - {score.name} </h4>
+                   </div>
                 ]
             
                 })}
-                </div>
                 </div>
             </div>
 

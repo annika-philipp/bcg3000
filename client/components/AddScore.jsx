@@ -26,7 +26,7 @@ class AddScore extends React.Component {
 
     render () {
         return (
-        <div className="container">
+        <div>
         <div className="welcome">
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
@@ -34,9 +34,9 @@ class AddScore extends React.Component {
             <form onSubmit={this.addScore}>
                 <p>Add your name to the scoreboard</p>
                 <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
-                <input type ='submit' value='Submit'/>
+                <input type='submit' value='Submit'/>
             </form>
-            {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>}
+            {/* {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
             {/* {this.props.isTopScore}
             {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
            
