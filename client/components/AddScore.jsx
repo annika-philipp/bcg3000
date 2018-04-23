@@ -32,7 +32,15 @@ class AddScore extends React.Component {
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
             <p>Your totalscore is: {this.state.score}</p>
-            {this.props.isTopScore
+            {/* <Scoreboard topScores={this.props.topScores} /> */}
+            <form onSubmit={this.addScore}>
+                <p>Add your name to the scoreboard</p>
+                <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
+                <input type ='submit' value='Submit'/>
+            </form>
+            {/* {this.props.isTopScore}
+            {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
+            {/* {this.props.isTopScore
             ?  
             <form onSubmit={this.addScore}>
                 <p>Add your name to the scoreboard</p>
@@ -44,9 +52,10 @@ class AddScore extends React.Component {
             //add timer
             // <Scoreboard topScores={this.props.topScores}/>
             }
-        </div>
-        <div className='row'>  
+        </div> */}
+        {/* <div className='row'>  
             <button onClick={this.props.resetGame} className="button">Play again</button>
+        </div> */}
         </div>
     </div> 
 

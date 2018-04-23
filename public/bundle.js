@@ -24846,7 +24846,7 @@ var AddScore = function (_React$Component) {
                         'Your totalscore is: ',
                         this.state.score
                     ),
-                    this.props.isTopScore ? _react2.default.createElement(
+                    _react2.default.createElement(
                         'form',
                         { onSubmit: this.addScore },
                         _react2.default.createElement(
@@ -24856,22 +24856,6 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
-                    ) : _react2.default.createElement(
-                        'p',
-                        null,
-                        'hello world'
-                    )
-                    //add timer
-                    // <Scoreboard topScores={this.props.topScores}/>
-
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement(
-                        'button',
-                        { onClick: this.props.resetGame, className: 'button' },
-                        'Play again'
                     )
                 )
             );
@@ -24914,7 +24898,7 @@ var Scoreboard = function Scoreboard(_ref) {
                 null,
                 "Top Scores"
             ),
-            undefined.props.topScores.map(function (score) {
+            topScores.map(function (score) {
                 return [_react2.default.createElement(
                     "h3",
                     null,

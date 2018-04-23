@@ -43,6 +43,26 @@ body {
 
 /* End of game div and display set up  */
 
+/* Scoreboard display */
+.scoreboard {
+    width: 80%;
+    height: 400px;
+    margin: 20px auto 20px auto;
+    background-color: rgb(54, 52, 52);
+    border: .4em solid goldenrod;
+    border-radius: .3em;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+
+.topscores {
+    display: flex;
+    flex-direction: column
+}
+
 /* All non-game components set up */
 
 .welcome {
@@ -91,11 +111,10 @@ h3 {
     background-color: darkgray;
     border: .2em solid rgb(83, 83, 82);
     border-radius: .15em;
-    font-size: .8em;
     text-transform: none;
     margin: 0 auto 10px auto;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 2em;
+    font-size: 1.5em;
 
 
 }
