@@ -143,9 +143,9 @@ class App extends React.Component {
 
     refreshScores() {
         console.log("Hello from refreshSCores")
-        this.setState({
-            isTopScore:false
-        })
+        // this.setState({
+        //     isTopScore:false
+        // })
         this.fetchScores()
     }
 

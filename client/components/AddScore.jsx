@@ -9,15 +9,23 @@ class AddScore extends React.Component {
         this.state = {
             name: '',
             score: this.props.totalscore,
-            isTopScore: this.props.isTopScore
+            isTopScore: this.props.isTopScore,
+            // scoreboard: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.addScore = this.addScore.bind(this)
+        // this.showScoreboard = this.showScoreboard.bind(this)
     }
 
     handleChange (e) {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    showScoreboard() {
+        this.setState({
+            scoreboard: true
         })
     }
 
@@ -42,9 +50,9 @@ class AddScore extends React.Component {
             : <div className='row'>  
             <button onClick={this.props.resetGame} className="button">Play again</button>
             </div>}
+            {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>}
+            {/* {this.state.showScoreboard && <Scoreboard topScores={this.props.topScores}/>} */}
             {/* {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
-            {/* {this.props.isTopScore}
-            {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
            
         </div>
     </div> 

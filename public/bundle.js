@@ -20094,9 +20094,9 @@ var App = function (_React$Component) {
         key: 'refreshScores',
         value: function refreshScores() {
             console.log("Hello from refreshSCores");
-            this.setState({
-                isTopScore: false
-            });
+            // this.setState({
+            //     isTopScore:false
+            // })
             this.fetchScores();
         }
     }, {
@@ -24805,9 +24805,11 @@ var AddScore = function (_React$Component) {
             name: '',
             score: _this.props.totalscore,
             isTopScore: _this.props.isTopScore
+            // scoreboard: false
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.addScore = _this.addScore.bind(_this);
+        // this.showScoreboard = this.showScoreboard.bind(this)
         return _this;
     }
 
@@ -24815,6 +24817,13 @@ var AddScore = function (_React$Component) {
         key: 'handleChange',
         value: function handleChange(e) {
             this.setState(_defineProperty({}, e.target.name, e.target.value));
+        }
+    }, {
+        key: 'showScoreboard',
+        value: function showScoreboard() {
+            this.setState({
+                scoreboard: true
+            });
         }
     }, {
         key: 'addScore',
@@ -24865,7 +24874,8 @@ var AddScore = function (_React$Component) {
                             { onClick: this.props.resetGame, className: 'button' },
                             'Play again'
                         )
-                    )
+                    ),
+                    this.props.topScores.length > 0 && _react2.default.createElement(_Scoreboard2.default, { topScores: this.props.topScores })
                 )
             );
         }
