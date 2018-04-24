@@ -24823,6 +24823,7 @@ var AddScore = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            console.log("Topscore? ", this.props.isTopScore);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -24845,7 +24846,7 @@ var AddScore = function (_React$Component) {
                         'Your totalscore is: ',
                         this.state.score
                     ),
-                    _react2.default.createElement(
+                    this.props.isTopScore ? _react2.default.createElement(
                         'form',
                         { onSubmit: this.addScore },
                         _react2.default.createElement(
@@ -24855,6 +24856,14 @@ var AddScore = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
                         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+                    ) : _react2.default.createElement(
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(
+                            'button',
+                            { onClick: this.props.resetGame, className: 'button' },
+                            'Play again'
+                        )
                     )
                 )
             );

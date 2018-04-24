@@ -25,24 +25,26 @@ class AddScore extends React.Component {
     }
 
     render () {
+        console.log("Topscore? ", this.props.isTopScore)
         return (
         <div>
         <div className="welcome">
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
             <p>Your totalscore is: {this.state.score}</p>
-            <form onSubmit={this.addScore}>
-                <p>Add your name to the scoreboard</p>
-                <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
-                <input type='submit' value='Submit'/>
+            {this.props.isTopScore
+            ? <form onSubmit={this.addScore}>
+            <p>Add your name to the scoreboard</p>
+            <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
+            <input type='submit' value='Submit'/>
             </form>
+            : <div className='row'>  
+            <button onClick={this.props.resetGame} className="button">Play again</button>
+            </div>}
             {/* {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
             {/* {this.props.isTopScore}
             {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
            
-        {/* <div className='row'>  
-            <button onClick={this.props.resetGame} className="button">Play again</button>
-        </div> */}
         </div>
     </div> 
 
