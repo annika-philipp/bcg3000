@@ -88,6 +88,7 @@ class App extends React.Component {
             gameOver: false,
             isNotNegative: true
         })
+      
     }
 
     startGame() {
