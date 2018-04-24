@@ -24803,7 +24803,8 @@ var AddScore = function (_React$Component) {
 
         _this.state = {
             name: '',
-            score: _this.props.totalscore
+            score: _this.props.totalscore,
+            isTopScore: _this.props.isTopScore
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.addScore = _this.addScore.bind(_this);

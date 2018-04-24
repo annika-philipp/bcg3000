@@ -8,7 +8,8 @@ class AddScore extends React.Component {
         super(props)
         this.state = {
             name: '',
-            score: this.props.totalscore
+            score: this.props.totalscore,
+            isTopScore: this.props.isTopScore
         }
         this.handleChange = this.handleChange.bind(this)
         this.addScore = this.addScore.bind(this)
