@@ -13,7 +13,7 @@ export function getQuestions (callback) {
         callback(questionList)
       })
       .catch(err => {
-        console.log('err', err)
+        // console.log('err', err)
         throw Error('Cannot GET Questions!')
       })
 }
@@ -22,7 +22,7 @@ export function getScoresApi (callback) {
   request
   .get(scores)
   .then(items => {
-    console.log("items.body ", items.body)
+    // console.log("items.body ", items.body)
     let data  = items.body
     let scoreList = data.sort(function(a,b) {
       return b.score - a.score
@@ -31,8 +31,8 @@ export function getScoresApi (callback) {
     for (var i = 0; i < 10; i++){
       topScoresApi.push(scoreList[i])
     }
-    console.log({scoreList})
-    console.log("Api Topscores, ", topScoresApi)
+    // console.log({scoreList})
+    // console.log("Api Topscores, ", topScoresApi)
     callback(topScoresApi)
   }) 
 
@@ -43,7 +43,7 @@ export function getScoresApi (callback) {
 // points.sort(function(a, b){return b-a});
 
 export function addScoreApi (score, callback) {
-  console.log("score in api, ", score)
+  // console.log("score in api, ", score)
   request
   .post(scores)
   .send(score)

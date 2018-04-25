@@ -35,7 +35,7 @@ class App extends React.Component {
 
 
         }
-        console.log(this.state)
+        // console.log(this.state)
 
         this.refreshBoard = this.refreshBoard.bind(this)
         this.saveQuestions = this.saveQuestions.bind(this)
@@ -111,37 +111,36 @@ class App extends React.Component {
 
     getScores () {
         getScoresApi(this.saveScores)
-        console.log("Hello from fetchSCores")
+        // console.log("Hello from fetchSCores")
     }
 
     saveScores(topScoresApi) {
-        console.log("huh", topScoresApi)
+        // console.log("huh", topScoresApi)
         this.setState({
             topScores: topScoresApi
         })
-        console.log("yay", this.state.topScores)
+        // console.log("yay", this.state.topScores)
         this.checkScore()
     }
 
     checkScore() {
         getScoresApi(this.checkIfTopScore)
-        console.log("Hello from checkScores")
+        // console.log("Hello from checkScores")
     }
 
     checkIfTopScore(topScoresApi) {
-        console.log('CHeck')
-        console.log("Topscores" , this.state.topScores)
-        console.log("topScores[9].score", this.state.topScores[9].score)
+        // console.log('CHeck')
+        // console.log("Topscores" , this.state.topScores)
         if(this.state.totalscore > this.state.topScores[9].score) {
             this.setState({
                 isTopScore:true
             })
         }
-        console.log(this.state.isTopScore)
+        // console.log(this.state.isTopScore)
     }
 
     refreshScores() {
-        console.log("Hello from refreshSCores")
+        // console.log("Hello from refreshSCores")
         // this.setState({
         //     isTopScore:false
         // })

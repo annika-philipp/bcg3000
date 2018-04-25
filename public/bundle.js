@@ -2559,14 +2559,14 @@ function getQuestions(callback) {
     var questionList = response.body;
     callback(questionList);
   }).catch(function (err) {
-    console.log('err', err);
+    // console.log('err', err)
     throw Error('Cannot GET Questions!');
   });
 }
 
 function getScoresApi(callback) {
   _superagent2.default.get(scores).then(function (items) {
-    console.log("items.body ", items.body);
+    // console.log("items.body ", items.body)
     var data = items.body;
     var scoreList = data.sort(function (a, b) {
       return b.score - a.score;
@@ -2575,8 +2575,8 @@ function getScoresApi(callback) {
     for (var i = 0; i < 10; i++) {
       topScoresApi.push(scoreList[i]);
     }
-    console.log({ scoreList: scoreList });
-    console.log("Api Topscores, ", topScoresApi);
+    // console.log({scoreList})
+    // console.log("Api Topscores, ", topScoresApi)
     callback(topScoresApi);
   });
 }
@@ -2586,7 +2586,7 @@ function getScoresApi(callback) {
 // points.sort(function(a, b){return b-a});
 
 function addScoreApi(score, callback) {
-  console.log("score in api, ", score);
+  // console.log("score in api, ", score)
   _superagent2.default.post(scores).send(score).end(function (err, res) {
     callback(res);
   });
@@ -19975,11 +19975,9 @@ var App = function (_React$Component) {
             isNotNegative: true,
             isTopScore: false,
             scoreIncreased: false
+            // console.log(this.state)
 
-        };
-        console.log(_this.state);
-
-        _this.refreshBoard = _this.refreshBoard.bind(_this);
+        };_this.refreshBoard = _this.refreshBoard.bind(_this);
         _this.saveQuestions = _this.saveQuestions.bind(_this);
         _this.updateIndex = _this.updateIndex.bind(_this);
         _this.updateScore = _this.updateScore.bind(_this);
@@ -20057,41 +20055,40 @@ var App = function (_React$Component) {
         key: 'getScores',
         value: function getScores() {
             (0, _api.getScoresApi)(this.saveScores);
-            console.log("Hello from fetchSCores");
+            // console.log("Hello from fetchSCores")
         }
     }, {
         key: 'saveScores',
         value: function saveScores(topScoresApi) {
-            console.log("huh", topScoresApi);
+            // console.log("huh", topScoresApi)
             this.setState({
                 topScores: topScoresApi
             });
-            console.log("yay", this.state.topScores);
+            // console.log("yay", this.state.topScores)
             this.checkScore();
         }
     }, {
         key: 'checkScore',
         value: function checkScore() {
             (0, _api.getScoresApi)(this.checkIfTopScore);
-            console.log("Hello from checkScores");
+            // console.log("Hello from checkScores")
         }
     }, {
         key: 'checkIfTopScore',
         value: function checkIfTopScore(topScoresApi) {
-            console.log('CHeck');
-            console.log("Topscores", this.state.topScores);
-            console.log("topScores[9].score", this.state.topScores[9].score);
+            // console.log('CHeck')
+            // console.log("Topscores" , this.state.topScores)
             if (this.state.totalscore > this.state.topScores[9].score) {
                 this.setState({
                     isTopScore: true
                 });
             }
-            console.log(this.state.isTopScore);
+            // console.log(this.state.isTopScore)
         }
     }, {
         key: 'refreshScores',
         value: function refreshScores() {
-            console.log("Hello from refreshSCores");
+            // console.log("Hello from refreshSCores")
             // this.setState({
             //     isTopScore:false
             // })
@@ -24655,48 +24652,48 @@ var Display = function Display(_ref) {
       scoreIncreased = _ref.scoreIncreased;
 
 
-  console.log(scoreIncreased, "score");
+  // console.log(scoreIncreased, "score")
   return _react2.default.createElement(
-    "div",
+    'div',
     null,
     _react2.default.createElement(
-      "div",
-      { className: "score" },
+      'div',
+      { className: 'score' },
       _react2.default.createElement(
-        "h2",
+        'h2',
         { style: { color: scoreIncreased ? 'green' : 'red' } },
-        "score: ",
+        'score: ',
         totalscore
       )
     ),
     _react2.default.createElement(
-      "div",
-      { className: "screen" },
+      'div',
+      { className: 'screen' },
       _react2.default.createElement(
-        "div",
-        { className: "question" },
+        'div',
+        { className: 'question' },
         _react2.default.createElement(
-          "h3",
+          'h3',
           null,
           question.question
         )
       )
     ),
     _react2.default.createElement(
-      "div",
+      'div',
       null,
       _react2.default.createElement(
-        "button",
+        'button',
         { onClick: function onClick() {
             return updateIndex(question.scores[0]);
-          }, value: "button1", className: "button" },
+          }, value: 'button1', className: 'button' },
         question.answers[0]
       ),
       _react2.default.createElement(
-        "button",
+        'button',
         { onClick: function onClick() {
             return updateIndex(question.scores[1]);
-          }, value: "button2", className: "button" },
+          }, value: 'button2', className: 'button' },
         question.answers[1]
       )
     )
@@ -24824,7 +24821,7 @@ var AddScore = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            console.log("Topscore? ", this.props.isTopScore);
+            // console.log("Topscore? ", this.props.isTopScore)
             return _react2.default.createElement(
                 'div',
                 null,

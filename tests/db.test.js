@@ -33,7 +33,7 @@ test('getScores gets 2nd score', () => {
     //Act - need to use return when testing with Promises
     return db.getScores(testDb)
       .then(scores => {
-        console.log(scores)
+        // console.log(scores)
         const actual = scores[1].score
         //Assert
         expect(actual).toBe(expected)

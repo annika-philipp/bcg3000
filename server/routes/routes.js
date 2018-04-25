@@ -11,7 +11,6 @@ router.use(bodyParser.json())
 router.get('/v1', (req, res) => {
     db.getQuestionsAndAnswers()
     .then(questions => {
-         console.log('im here too', questions)
 
         let questionsList = []
         for(var i = 0; i < questions.length; i=i+2) {
@@ -31,12 +30,10 @@ router.get('/v1', (req, res) => {
             }
             questionsList.push(q)
         }
-        console.log(questionsList)
 
         res.json(questionsList)
     })
     .catch(err => {
-        console.log('i dont want to be here', err)
         res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
@@ -44,7 +41,6 @@ router.get('/v1', (req, res) => {
 router.get('/v2', (req, res) => {
     db.getScores()
     .then(scores => {
-        console.log("Helloooo", scores)
         res.json(scores)
     })
     .catch(err => {

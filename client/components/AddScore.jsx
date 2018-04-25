@@ -29,7 +29,7 @@ class AddScore extends React.Component {
     }
 
     render () {
-        console.log("Topscore? ", this.props.isTopScore)
+        // console.log("Topscore? ", this.props.isTopScore)
         return (
         <div>
             <div className="welcome">

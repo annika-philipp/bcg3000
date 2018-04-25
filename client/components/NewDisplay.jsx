@@ -11,7 +11,7 @@ class NewDisplay extends React.Component {
     }
 
     updateScore() {
-        console.log('Hello')
+        // console.log('Hello')
         if(button.value == "answer1") {
             this.totalscore += this.question.scores[0]
         } else {
