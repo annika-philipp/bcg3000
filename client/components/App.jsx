@@ -160,9 +160,6 @@ class App extends React.Component {
                 isNotNegative: false
             })
         }
-        else {
-            // console.log ("Huzzah")
-            }
     }
 
     updateIndex (score) {

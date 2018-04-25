@@ -21,11 +21,6 @@ class AddScore extends React.Component {
         })
     }
 
-    // showScoreboard() {
-    //     this.setState({
-    //         scoreboard: true
-    //     })
-    // }
 
     addScore (e) {
         // console.log(this.state)

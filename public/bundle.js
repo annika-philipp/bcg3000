@@ -20110,8 +20110,6 @@ var App = function (_React$Component) {
                 this.setState({
                     isNotNegative: false
                 });
-            } else {
-                // console.log ("Huzzah")
             }
         }
     }, {
@@ -24810,13 +24808,6 @@ var AddScore = function (_React$Component) {
         value: function handleChange(e) {
             this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
-
-        // showScoreboard() {
-        //     this.setState({
-        //         scoreboard: true
-        //     })
-        // }
-
     }, {
         key: 'addScore',
         value: function addScore(e) {
