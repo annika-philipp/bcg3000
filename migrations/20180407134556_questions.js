@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary()
         table.string('question')
         table.integer('week')
-        table.blob('image')
       })
     }
 
