@@ -29,8 +29,7 @@ class App extends React.Component {
             gameOver: false,
             isNotNegative: true,
             isTopScore: false
-            // player: ''
-            //pause: false -- maybe
+
 
 
         }
@@ -42,13 +41,11 @@ class App extends React.Component {
         this.updateScore = this.updateScore.bind(this)
         this.startGame = this.startGame.bind(this)
         this.resetGame = this.resetGame.bind(this)
-        this.fetchScores = this.fetchScores.bind(this)
+        this.getScores = this.getScores.bind(this)
         this.saveScores = this.saveScores.bind(this)
         this.checkScore = this.checkScore.bind(this)
         this.checkIfTopScore = this.checkIfTopScore.bind(this)
         this.refreshScores = this.refreshScores.bind(this)
-
-
     }
 
     componentDidMount() {
@@ -95,7 +92,8 @@ class App extends React.Component {
         this.setState({
             beforeGame: false,
             gamePlaying: true,
-            gameOver: false
+            gameOver: false,
+            isTopScore: false
         })
     }
 
@@ -103,13 +101,13 @@ class App extends React.Component {
         this.setState({
             beforeGame: false,
             gamePlaying: false,
-            gameOver: true
+            gameOver: true,
 
         })
-        this.fetchScores()
+        this.getScores()
     }
 
-    fetchScores () {
+    getScores () {
         getScoresApi(this.saveScores)
         console.log("Hello from fetchSCores")
     }
@@ -126,7 +124,6 @@ class App extends React.Component {
     checkScore() {
         getScoresApi(this.checkIfTopScore)
         console.log("Hello from checkScores")
-
     }
 
     checkIfTopScore(topScoresApi) {
@@ -146,14 +143,12 @@ class App extends React.Component {
         // this.setState({
         //     isTopScore:false
         // })
-        this.fetchScores()
+        this.getScores()
     }
-
 
 
     updateScore(value) {
         // console.log('updating score', value)
-
         var updatedscore = this.state.totalscore + value
         // console.log('updatedscore, ', updatedscore)
         this.setState({
@@ -171,19 +166,14 @@ class App extends React.Component {
     }
 
     updateIndex (score) {
-    var next = this.state.index == this.state.questions.length -1 ? this.gameOver() : this.state.index + 1
-
-    
+    var next = this.state.index == this.state.questions.length -1 ? this.gameOver() : this.state.index + 1 
     this.setState({
         index: next,
     })
     this.updateScore(score)
-
     }
 
     handleUpdate (index) {
-
-
         if(this.state.questions.length > 0 && this.state.isNotNegative) {
             return (
                 <div>
@@ -198,14 +188,8 @@ class App extends React.Component {
                 </div>
             )
         }    
-
-
     }
     
-
-
-  
-
 
     render () {
         const {totalscore} = this.state
@@ -221,11 +205,8 @@ class App extends React.Component {
                 {this.state.gamePlaying && this.handleUpdate(this.state.index)}
             </div>
             </div>
-        )
-
-        
+        )   
     }
-
 }
 
 export default App

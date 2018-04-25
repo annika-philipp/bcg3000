@@ -19974,9 +19974,6 @@ var App = function (_React$Component) {
             gameOver: false,
             isNotNegative: true,
             isTopScore: false
-            // player: ''
-            //pause: false -- maybe
-
 
         };
         console.log(_this.state);
@@ -19987,12 +19984,11 @@ var App = function (_React$Component) {
         _this.updateScore = _this.updateScore.bind(_this);
         _this.startGame = _this.startGame.bind(_this);
         _this.resetGame = _this.resetGame.bind(_this);
-        _this.fetchScores = _this.fetchScores.bind(_this);
+        _this.getScores = _this.getScores.bind(_this);
         _this.saveScores = _this.saveScores.bind(_this);
         _this.checkScore = _this.checkScore.bind(_this);
         _this.checkIfTopScore = _this.checkIfTopScore.bind(_this);
         _this.refreshScores = _this.refreshScores.bind(_this);
-
         return _this;
     }
 
@@ -20041,7 +20037,8 @@ var App = function (_React$Component) {
             this.setState({
                 beforeGame: false,
                 gamePlaying: true,
-                gameOver: false
+                gameOver: false,
+                isTopScore: false
             });
         }
     }, {
@@ -20053,11 +20050,11 @@ var App = function (_React$Component) {
                 gameOver: true
 
             });
-            this.fetchScores();
+            this.getScores();
         }
     }, {
-        key: 'fetchScores',
-        value: function fetchScores() {
+        key: 'getScores',
+        value: function getScores() {
             (0, _api.getScoresApi)(this.saveScores);
             console.log("Hello from fetchSCores");
         }
@@ -20097,13 +20094,12 @@ var App = function (_React$Component) {
             // this.setState({
             //     isTopScore:false
             // })
-            this.fetchScores();
+            this.getScores();
         }
     }, {
         key: 'updateScore',
         value: function updateScore(value) {
             // console.log('updating score', value)
-
             var updatedscore = this.state.totalscore + value;
             // console.log('updatedscore, ', updatedscore)
             this.setState({
@@ -20122,7 +20118,6 @@ var App = function (_React$Component) {
         key: 'updateIndex',
         value: function updateIndex(score) {
             var next = this.state.index == this.state.questions.length - 1 ? this.gameOver() : this.state.index + 1;
-
             this.setState({
                 index: next
             });
@@ -20131,7 +20126,6 @@ var App = function (_React$Component) {
     }, {
         key: 'handleUpdate',
         value: function handleUpdate(index) {
-
             if (this.state.questions.length > 0 && this.state.isNotNegative) {
                 return _react2.default.createElement(
                     'div',
@@ -24805,11 +24799,9 @@ var AddScore = function (_React$Component) {
             name: '',
             score: _this.props.totalscore,
             isTopScore: _this.props.isTopScore
-            // scoreboard: false
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.addScore = _this.addScore.bind(_this);
-        // this.showScoreboard = this.showScoreboard.bind(this)
         return _this;
     }
 
@@ -24818,16 +24810,18 @@ var AddScore = function (_React$Component) {
         value: function handleChange(e) {
             this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
-    }, {
-        key: 'showScoreboard',
-        value: function showScoreboard() {
-            this.setState({
-                scoreboard: true
-            });
-        }
+
+        // showScoreboard() {
+        //     this.setState({
+        //         scoreboard: true
+        //     })
+        // }
+
     }, {
         key: 'addScore',
         value: function addScore(e) {
+            // console.log(this.state)
+            e.preventDefault();
             (0, _api.addScoreApi)(this.state, this.props.refreshScores);
         }
     }, {
@@ -24856,17 +24850,28 @@ var AddScore = function (_React$Component) {
                         'Your totalscore is: ',
                         this.state.score
                     ),
-                    this.props.isTopScore ? _react2.default.createElement(
-                        'form',
-                        { onSubmit: this.addScore },
+                    this.props.isTopScore && _react2.default.createElement(
+                        'div',
+                        null,
                         _react2.default.createElement(
-                            'p',
-                            null,
-                            'Add your name to the scoreboard'
-                        ),
-                        _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
-                        _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
-                    ) : _react2.default.createElement(
+                            'form',
+                            { onSubmit: this.addScore },
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                'Add your name to the scoreboard'
+                            ),
+                            _react2.default.createElement('input', { placeholder: 'Player', name: 'name', onChange: this.handleChange, value: this.state.name }),
+                            _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+                        )
+                    ),
+                    !this.props.isTopScore && _react2.default.createElement('div', { className: 'row' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    this.props.topScores.length > 0 && _react2.default.createElement(_Scoreboard2.default, { topScores: this.props.topScores }),
+                    _react2.default.createElement(
                         'div',
                         { className: 'row' },
                         _react2.default.createElement(
@@ -24874,8 +24879,7 @@ var AddScore = function (_React$Component) {
                             { onClick: this.props.resetGame, className: 'button' },
                             'Play again'
                         )
-                    ),
-                    this.props.topScores.length > 0 && _react2.default.createElement(_Scoreboard2.default, { topScores: this.props.topScores })
+                    )
                 )
             );
         }
@@ -24913,7 +24917,7 @@ var Scoreboard = function Scoreboard(_ref) {
             "div",
             { className: "scoreboard" },
             _react2.default.createElement(
-                "h3",
+                "h4",
                 null,
                 "Top Scores"
             ),
@@ -24925,7 +24929,7 @@ var Scoreboard = function Scoreboard(_ref) {
                         "div",
                         { className: "topscoresnames" },
                         _react2.default.createElement(
-                            "h4",
+                            "p",
                             null,
                             " ",
                             score.score,

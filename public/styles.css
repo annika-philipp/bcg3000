@@ -9,14 +9,14 @@ body {
     height: 700px;
     justify-content: center;
     margin: 0 auto;
-    border: .1em dotted red;
+    /* border: .1em dotted red; */
 
 }
 
 /* Game div and display set up  */
 .game {
     width: 100%;
-    border: .1em dotted blue;
+    /* border: .1em dotted blue; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -30,12 +30,14 @@ body {
     background-color: rgb(54, 52, 52);
     border: .5em solid goldenrod;
     border-radius: .3em;
+    display: flex;
+    align-items: center
 }
 
 .question {
     width: 80%;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: 1.3em;
     color: white;
     margin: 20px auto 20px auto;
     
@@ -45,8 +47,8 @@ body {
 
 /* Scoreboard display */
 .scoreboard {
-    width: 100%;
-    height: 500px;
+    width: 80%;
+    height: 200px;
     margin: 20px auto 20px auto;
     background-color: rgb(54, 52, 52);
     border: .4em solid goldenrod;
@@ -64,7 +66,7 @@ body {
 }
 
 .topscoresnames {
-padding: 10px 50px
+padding: 0px 30px
 }
 
 /* All non-game components set up */
@@ -83,7 +85,7 @@ padding: 10px 50px
 }
 
 .row {
-    border: .1em dotted yellow;
+    /* border: .1em dotted yellow; */
     text-align: center;
 }
 
@@ -113,9 +115,6 @@ h4 {
 }
 
 
-
-
-
 .button {
     width: 80%;
     height: 80px;
@@ -130,7 +129,21 @@ h4 {
 
 }
 
-/* 
+.HighScoreButton {
+    width: 80%;
+    height: 80px;
+    background-color: darkgray;
+    border: .2em solid rgb(83, 83, 82);
+    border-radius: .15em;
+    text-transform: none;
+    margin: 0 auto 10px auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+
+
+}
+
+
 @media screen and (max-width: 500px){
     .container {
         width: 100%
@@ -138,10 +151,19 @@ h4 {
     .game {
       width: 100%;
     }
+
+    .welcome {
+        width: 90%;
+    }
+
+    .screen {
+        width: 90%;
+    }    
     /* .question {
         font-size: 3em
     } */
 
-    /* .button {
-        font-size: smaller em
-    } */
+    .button {
+    font-size: 1.2em
+    }
+}

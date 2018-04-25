@@ -10,11 +10,9 @@ class AddScore extends React.Component {
             name: '',
             score: this.props.totalscore,
             isTopScore: this.props.isTopScore,
-            // scoreboard: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.addScore = this.addScore.bind(this)
-        // this.showScoreboard = this.showScoreboard.bind(this)
     }
 
     handleChange (e) {
@@ -23,13 +21,15 @@ class AddScore extends React.Component {
         })
     }
 
-    showScoreboard() {
-        this.setState({
-            scoreboard: true
-        })
-    }
+    // showScoreboard() {
+    //     this.setState({
+    //         scoreboard: true
+    //     })
+    // }
 
     addScore (e) {
+        // console.log(this.state)
+        e.preventDefault()
         addScoreApi(this.state, this.props.refreshScores)
     }
 
@@ -37,24 +37,29 @@ class AddScore extends React.Component {
         console.log("Topscore? ", this.props.isTopScore)
         return (
         <div>
-        <div className="welcome">
+            <div className="welcome">
             <h3>Well done!</h3>
             <h3>Deploy yourself into phase 3</h3> 
             <p>Your totalscore is: {this.state.score}</p>
-            {this.props.isTopScore
-            ? <form onSubmit={this.addScore}>
+            {this.props.isTopScore && <div><form onSubmit={this.addScore}>
             <p>Add your name to the scoreboard</p>
             <input placeholder='Player' name='name' onChange={this.handleChange} value={this.state.name} />
             <input type='submit' value='Submit'/>
             </form>
-            : <div className='row'>  
-            <button onClick={this.props.resetGame} className="button">Play again</button>
+            </div>
+            }
+
+            {!this.props.isTopScore && <div className='row'>  
+            {/* <button onClick={this.props.resetGame} className="button">Play again</button> */}
             </div>}
+            </div>
+            <div className="row">
             {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>}
-            {/* {this.state.showScoreboard && <Scoreboard topScores={this.props.topScores}/>} */}
-            {/* {this.props.topScores.length > 0 && <Scoreboard topScores={this.props.topScores}/>} */}
+            <div className="row">
+                <button onClick={this.props.resetGame} className="button">Play again</button>
+            </div>
+            </div>
            
-        </div>
     </div> 
 
 
