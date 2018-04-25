@@ -19973,7 +19973,8 @@ var App = function (_React$Component) {
             gamePlaying: false,
             gameOver: false,
             isNotNegative: true,
-            isTopScore: false
+            isTopScore: false,
+            scoreIncreased: false
 
         };
         console.log(_this.state);
@@ -20099,14 +20100,17 @@ var App = function (_React$Component) {
     }, {
         key: 'updateScore',
         value: function updateScore(value) {
-            // console.log('updating score', value)
             var updatedscore = this.state.totalscore + value;
-            // console.log('updatedscore, ', updatedscore)
             this.setState({
                 totalscore: updatedscore
             });
+            var scoreIncreased = updatedscore > this.state.totalscore ? this.setState({
+                scoreIncreased: true
+            }) : this.setState({
+                scoreIncreased: false
+            });
+
             if (updatedscore < 0) {
-                // console.log('noooo', updatedscore)
                 this.setState({
                     isNotNegative: false
                 });
@@ -20128,7 +20132,7 @@ var App = function (_React$Component) {
                 return _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex, totalscore: this.state.totalscore })
+                    _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex, totalscore: this.state.totalscore, scoreIncreased: this.state.scoreIncreased })
                 );
             }
             if (this.state.questions.length > 0 && !this.state.isNotNegative) {
@@ -24647,9 +24651,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Display = function Display(_ref) {
   var question = _ref.question,
       updateIndex = _ref.updateIndex,
-      totalscore = _ref.totalscore;
+      totalscore = _ref.totalscore,
+      scoreIncreased = _ref.scoreIncreased;
 
 
+  console.log(scoreIncreased, "score");
   return _react2.default.createElement(
     "div",
     null,
@@ -24658,7 +24664,7 @@ var Display = function Display(_ref) {
       { className: "score" },
       _react2.default.createElement(
         "h2",
-        null,
+        { style: { color: scoreIncreased ? 'green' : 'red' } },
         "score: ",
         totalscore
       )

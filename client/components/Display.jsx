@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Display = ({question, updateIndex, totalscore}) => {
+const Display = ({question, updateIndex, totalscore, scoreIncreased}) => {
 
-  
+  console.log(scoreIncreased, "score")
     return (
       <div>
         <div className="score">
-        <h2>score: {totalscore}</h2>
+        <h2 style={{color: scoreIncreased ? 'green' : 'red'}}>score: {totalscore}</h2>
         </div>
         <div className="screen">
           <div className="question">

@@ -28,7 +28,9 @@ class App extends React.Component {
             gamePlaying: false,
             gameOver: false,
             isNotNegative: true,
-            isTopScore: false
+            isTopScore: false,
+            scoreIncreased: false
+
 
 
 
@@ -148,14 +150,19 @@ class App extends React.Component {
 
 
     updateScore(value) {
-        // console.log('updating score', value)
         var updatedscore = this.state.totalscore + value
-        // console.log('updatedscore, ', updatedscore)
         this.setState({
             totalscore: updatedscore
         }) 
+        var scoreIncreased = updatedscore > this.state.totalscore
+        ? this.setState({
+                scoreIncreased: true
+            })
+        : this.setState({
+            scoreIncreased: false
+        })    
+
         if (updatedscore < 0)  {
-            // console.log('noooo', updatedscore)
             this.setState ({
                 isNotNegative: false
             })
@@ -174,7 +181,7 @@ class App extends React.Component {
         if(this.state.questions.length > 0 && this.state.isNotNegative) {
             return (
                 <div>
-                     <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} totalscore={this.state.totalscore} />
+                     <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} totalscore={this.state.totalscore} scoreIncreased={this.state.scoreIncreased} />
                      
                 </div>    
             )}
