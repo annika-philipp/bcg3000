@@ -2581,10 +2581,6 @@ function getScoresApi(callback) {
   });
 }
 
-// Array sort() descending
-// var points = [40, 100, 1, 5, 25, 10];
-// points.sort(function(a, b){return b-a});
-
 function addScoreApi(score, callback) {
   // console.log("score in api, ", score)
   _superagent2.default.post(scores).send(score).end(function (err, res) {
@@ -19949,8 +19945,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import PlayAgain from './PlayAgain'
-
 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
@@ -19961,7 +19955,6 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            // topScores: [],
             totalscore: 0,
             topScores: [],
             questions: [],
@@ -19972,12 +19965,12 @@ var App = function (_React$Component) {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
-            isNotNegative: true,
+            isPositiveScore: true,
             isTopScore: false,
-            scoreIncreased: false
-            // console.log(this.state)
+            scoreIncreased: true
+        };
 
-        };_this.refreshBoard = _this.refreshBoard.bind(_this);
+        _this.refreshBoard = _this.refreshBoard.bind(_this);
         _this.saveQuestions = _this.saveQuestions.bind(_this);
         _this.updateIndex = _this.updateIndex.bind(_this);
         _this.updateScore = _this.updateScore.bind(_this);
@@ -19994,14 +19987,11 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            // console.log('Mount')
             this.refreshBoard();
         }
     }, {
         key: 'saveQuestions',
         value: function saveQuestions(questionsList) {
-            // console.log('show me questionsList: ' + questionsList)
-
             this.setState({
                 questions: questionsList,
                 currentQuestionObject: questionsList
@@ -20027,7 +20017,7 @@ var App = function (_React$Component) {
                 beforeGame: true,
                 gamePlaying: false,
                 gameOver: false,
-                isNotNegative: true
+                isPositiveScore: true
             });
         }
     }, {
@@ -20047,7 +20037,6 @@ var App = function (_React$Component) {
                 beforeGame: false,
                 gamePlaying: false,
                 gameOver: true
-
             });
             this.getScores();
         }
@@ -20055,43 +20044,32 @@ var App = function (_React$Component) {
         key: 'getScores',
         value: function getScores() {
             (0, _api.getScoresApi)(this.saveScores);
-            // console.log("Hello from fetchSCores")
         }
     }, {
         key: 'saveScores',
         value: function saveScores(topScoresApi) {
-            // console.log("huh", topScoresApi)
             this.setState({
                 topScores: topScoresApi
             });
-            // console.log("yay", this.state.topScores)
             this.checkScore();
         }
     }, {
         key: 'checkScore',
         value: function checkScore() {
             (0, _api.getScoresApi)(this.checkIfTopScore);
-            // console.log("Hello from checkScores")
         }
     }, {
         key: 'checkIfTopScore',
         value: function checkIfTopScore(topScoresApi) {
-            // console.log('CHeck')
-            // console.log("Topscores" , this.state.topScores)
             if (this.state.totalscore > this.state.topScores[9].score) {
                 this.setState({
                     isTopScore: true
                 });
             }
-            // console.log(this.state.isTopScore)
         }
     }, {
         key: 'refreshScores',
         value: function refreshScores() {
-            // console.log("Hello from refreshSCores")
-            // this.setState({
-            //     isTopScore:false
-            // })
             this.getScores();
         }
     }, {
@@ -20109,7 +20087,7 @@ var App = function (_React$Component) {
 
             if (updatedscore < 0) {
                 this.setState({
-                    isNotNegative: false
+                    isPositiveScore: false
                 });
             }
         }
@@ -20125,14 +20103,14 @@ var App = function (_React$Component) {
     }, {
         key: 'handleUpdate',
         value: function handleUpdate(index) {
-            if (this.state.questions.length > 0 && this.state.isNotNegative) {
+            if (this.state.questions.length > 0 && this.state.isPositiveScore) {
                 return _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(_Display2.default, { question: this.state.currentQuestionObject[index], updateIndex: this.updateIndex, totalscore: this.state.totalscore, scoreIncreased: this.state.scoreIncreased })
                 );
             }
-            if (this.state.questions.length > 0 && !this.state.isNotNegative) {
+            if (this.state.questions.length > 0 && !this.state.isPositiveScore) {
                 return _react2.default.createElement(
                     'div',
                     null,
@@ -20144,7 +20122,6 @@ var App = function (_React$Component) {
         key: 'render',
         value: function render() {
             var totalscore = this.state.totalscore;
-
 
             return _react2.default.createElement(
                 'div',
@@ -24652,7 +24629,6 @@ var Display = function Display(_ref) {
       scoreIncreased = _ref.scoreIncreased;
 
 
-  // console.log(scoreIncreased, "score")
   return _react2.default.createElement(
     'div',
     null,
@@ -24821,7 +24797,6 @@ var AddScore = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            // console.log("Topscore? ", this.props.isTopScore)
             return _react2.default.createElement(
                 'div',
                 null,

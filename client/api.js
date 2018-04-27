@@ -35,12 +35,7 @@ export function getScoresApi (callback) {
     // console.log("Api Topscores, ", topScoresApi)
     callback(topScoresApi)
   }) 
-
 }
-
-// Array sort() descending
-// var points = [40, 100, 1, 5, 25, 10];
-// points.sort(function(a, b){return b-a});
 
 export function addScoreApi (score, callback) {
   // console.log("score in api, ", score)

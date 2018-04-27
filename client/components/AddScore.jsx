@@ -29,7 +29,6 @@ class AddScore extends React.Component {
     }
 
     render () {
-        // console.log("Topscore? ", this.props.isTopScore)
         return (
         <div>
             <div className="welcome">
@@ -43,9 +42,7 @@ class AddScore extends React.Component {
             </form>
             </div>
             }
-
             {!this.props.isTopScore && <div className='row'>  
-            {/* <button onClick={this.props.resetGame} className="button">Play again</button> */}
             </div>}
             </div>
             <div className="row">
@@ -55,12 +52,7 @@ class AddScore extends React.Component {
             </div>
             </div>
            
-    </div> 
-
-
-)
-
-
+    </div> )
     }
 }
 

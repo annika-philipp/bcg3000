@@ -2,7 +2,6 @@ import React from 'react'
 
 const Display = ({question, updateIndex, totalscore, scoreIncreased}) => {
 
-  // console.log(scoreIncreased, "score")
     return (
       <div>
         <div className="score">

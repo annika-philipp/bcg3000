@@ -1,14 +1,15 @@
-const request = require('supertest')
-const cheerio = require('cheerio')
+import request from 'supertest'
+import cheerio from 'cheerio'
 
-jest.mock('../server/db/db', () => ({
-    getScores: () => Promise.resolve([
-        {id: 1, user_id: 1, score: 80, name: "Player1"},
-        {id: 2, user_id: 2, score: 75, name: "Player1"}
-    ]) 
-}))
+const server = require('../server/routes/routes')
 
-const routes = require('../server/routes/routes')
+
+// jest.mock('../server/db/db', () => ({
+//     getScores: () => Promise.resolve([
+//         {id: 1, user_id: 1, score: 80, name: "Player1"},
+//         {id: 2, user_id: 2, score: 75, name: "Player1"}
+//     ]) 
+// }))
 
 // test('GET /', () => {
 //     return request(routes)
@@ -22,7 +23,7 @@ const routes = require('../server/routes/routes')
 
 test('GET works', (done) => {
     request(routes)
-    .get('api/v1')
+    .get('/api')
     .expect(302)
     .end((err, res) => {
         expect(err).toBeFalsy()

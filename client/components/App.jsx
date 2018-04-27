@@ -5,18 +5,14 @@ import ReactDOM from 'react-dom'
 import Welcome from './Welcome'
 import Display from './Display'
 import GameOver from './GameOver'
-// import PlayAgain from './PlayAgain'
 import AddScore from './AddScore'
 
 import {getQuestions, addScoreApi, getScoresApi } from '../api'
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            // topScores: [],
             totalscore: 0,
             topScores: [],
             questions: [],
@@ -27,15 +23,10 @@ class App extends React.Component {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
-            isNotNegative: true,
+            isPositiveScore: true,
             isTopScore: false,
-            scoreIncreased: false
-
-
-
-
+            scoreIncreased: true
         }
-        // console.log(this.state)
 
         this.refreshBoard = this.refreshBoard.bind(this)
         this.saveQuestions = this.saveQuestions.bind(this)
@@ -51,29 +42,22 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // console.log('Mount')
         this.refreshBoard()
     }
 
-    saveQuestions(questionsList) {
-        // console.log('show me questionsList: ' + questionsList)
-        
+    saveQuestions(questionsList) {        
         this.setState({
             questions: questionsList,
             currentQuestionObject: questionsList
         })
-    
     }
        
-
     refreshBoard (err) {
         this.setState({
             error: err,
         })
         getQuestions(this.saveQuestions)
-        
     }
-
 
     resetGame() {
         this.setState({
@@ -85,9 +69,8 @@ class App extends React.Component {
             beforeGame: true,
             gamePlaying: false,
             gameOver: false,
-            isNotNegative: true
+            isPositiveScore: true
         })
-      
     }
 
     startGame() {
@@ -104,46 +87,34 @@ class App extends React.Component {
             beforeGame: false,
             gamePlaying: false,
             gameOver: true,
-
         })
         this.getScores()
     }
 
     getScores () {
         getScoresApi(this.saveScores)
-        // console.log("Hello from fetchSCores")
     }
 
     saveScores(topScoresApi) {
-        // console.log("huh", topScoresApi)
         this.setState({
             topScores: topScoresApi
         })
-        // console.log("yay", this.state.topScores)
         this.checkScore()
     }
 
     checkScore() {
         getScoresApi(this.checkIfTopScore)
-        // console.log("Hello from checkScores")
     }
 
     checkIfTopScore(topScoresApi) {
-        // console.log('CHeck')
-        // console.log("Topscores" , this.state.topScores)
         if(this.state.totalscore > this.state.topScores[9].score) {
             this.setState({
                 isTopScore:true
             })
         }
-        // console.log(this.state.isTopScore)
     }
 
     refreshScores() {
-        // console.log("Hello from refreshSCores")
-        // this.setState({
-        //     isTopScore:false
-        // })
         this.getScores()
     }
 
@@ -163,7 +134,7 @@ class App extends React.Component {
 
         if (updatedscore < 0)  {
             this.setState ({
-                isNotNegative: false
+                isPositiveScore: false
             })
         }
     }
@@ -177,14 +148,13 @@ class App extends React.Component {
     }
 
     handleUpdate (index) {
-        if(this.state.questions.length > 0 && this.state.isNotNegative) {
+        if(this.state.questions.length > 0 && this.state.isPositiveScore) {
             return (
                 <div>
                      <Display question={this.state.currentQuestionObject[index]} updateIndex={this.updateIndex} totalscore={this.state.totalscore} scoreIncreased={this.state.scoreIncreased} />
-                     
                 </div>    
             )}
-        if(this.state.questions.length > 0 && !this.state.isNotNegative) {
+        if(this.state.questions.length > 0 && !this.state.isPositiveScore) {
             return (
                 <div>
                     <GameOver resetGame={this.resetGame}/>
@@ -196,7 +166,6 @@ class App extends React.Component {
 
     render () {
         const {totalscore} = this.state
-
         return (
             <div className="container">
             <div className="row">

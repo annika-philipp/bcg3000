@@ -1,6 +1,5 @@
 const express = require('express')
 const server = require('../server')
-//bodyParser needed?
 const bodyParser = require('body-parser')
 const router = express.Router()
 const db = require('../db/db')
@@ -11,7 +10,7 @@ router.use(bodyParser.json())
 router.get('/v1', (req, res) => {
     db.getQuestionsAndAnswers()
     .then(questions => {
-
+        // console.log("questions ", questions)
         let questionsList = []
         for(var i = 0; i < questions.length; i=i+2) {
             let question = questions[i]
@@ -41,6 +40,7 @@ router.get('/v1', (req, res) => {
 router.get('/v2', (req, res) => {
     db.getScores()
     .then(scores => {
+        // console.log("Scores, ", scores)
         res.json(scores)
     })
     .catch(err => {

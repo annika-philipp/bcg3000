@@ -12,13 +12,12 @@ beforeEach(() => {
 afterEach(() => testEnv.cleanup(testDb))
 
 test('getScores gets all scores', () => {
-  // Hardcoded 10 scores
   //Arrange
   const expected = 10
   //Act - need to use return when testing with Promises
   return db.getScores(testDb)
     .then(scores => {
-      //console.log(scores)
+      // console.log("Scores", scores)
       const actual = scores.length
       //Assert
       expect(actual).toBe(expected)
@@ -27,7 +26,6 @@ test('getScores gets all scores', () => {
 })
 
 test('getScores gets 2nd score', () => {
-    // Hardcoded 10 scores
     //Arrange
     const expected = 75
     //Act - need to use return when testing with Promises
@@ -41,50 +39,34 @@ test('getScores gets 2nd score', () => {
       .catch(err => expect(err).toBeNull())
   })
 
-test('getQuestionsAndAnswers gets all 11 question/answer pairs', () => {
-
+test('getQuestionsAndAnswers gets all question/answer pairs', () => {
   //Arrange
-  const expected = 22
+
+  const expected = 24
   //Act - need to use return when testing with Promises
-  return db.getQuestionsAndAnswers(testDb)
-    .then(questions => {
-      //console.log(questions)
-      const actual = questions.length
+  return db.getQuestionsAndAnswers(1, testDb)
+    .then(question => {
+      console.log(question)
+      const actual = question.length
       //Assert
       expect(actual).toBe(expected)
     })
     .catch(err => expect(err).toBeNull())
 })
 
-// test('getAnswersForQuestions gets an object with the two answers per question', () => {
-//   // 2 for each week (currently 3 weeks)
-//   //Arrange
-//   const expected = 2
-//   const id = 2
-//   //Act - need to use return when testing with Promises
-//   return db.getAnswersForQuestions(id, testDb)
-//     .then(questionAnswerPair => {
-//     //  console.log(questionAnswerPair)
-//       const actual = questionAnswerPair.length
-//       //Assert
-//       expect(actual).toBe(expected)
-//     })
-//     .catch(err => expect(err).toBeNull())
-// })
+test('getQuestionsAndAnswers gets the first answer to question 1', () => {
+  //Arrange
 
-// test('getAnswersForQuestions gets the second objects answer', () => {
-//   // 2 for each week (currently 3 weeks)
-//   //Arrange
-//   const expected = 'return obj.age++'
-//   const id = 2 // this is the question id
-//   //Act - need to use return when testing with Promises
-//   return db.getAnswersForQuestions(id, testDb)
-//     .then(questionAnswerPair => {
-//       console.log(questionAnswerPair)
-//       const actual = questionAnswerPair[1].answer
-//       //Assert
-//       expect(actual).toBe(expected)
-//     })
-//     .catch(err => expect(err).toBeNull())
-// })
+  const expected = 'excited!'
+  //Act - need to use return when testing with Promises
+  return db.getQuestionsAndAnswers(1, testDb)
+    .then(question => {
+      console.log(question)
+      const actual = question[0].answer
+      //Assert
+      expect(actual).toBe(expected)
+    })
+    .catch(err => expect(err).toBeNull())
+})
+
 
