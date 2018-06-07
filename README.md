@@ -1,32 +1,8 @@
-# React minimal
+# bcg3000 - Personal Project (week 4 - 6) as part of Enspiral Dev Academy web development course
 
-As part of an introduction to React, this repo attempts to show React in a most basic form.
+bcg3000 is a questions/answer game based on our experience as students of EDA. At the time of writing this game, this was by far the most challenging project I had taken on (while also studying 70 hrs/week).
 
-* Many components can be simple functions.
-* Data to render in the component is passed in as props.
-* Assemble other components by importing them and calling them.
+* Written with React, Knex.js, Express.js, Node.js 
 
+* This is the first version of my game and has become a training ground for experimenting with new software. bcg-redux is the same game but re-written with react/redux. I am currently working on both a ruby version as well a react-native version.
 
-## Setup
-
-Clone this repo, and from the repo's folder
-
-```sh
-yarn
-yarn start
-```
-
-
-## Next steps
-
-* Add new mount points and render components into them.
-* Add new components and use them inside existing components.
-* Render complex data structures (objects in objects) as props.
-* Check out the `yarn start` script and the `webpack.config.js` file.
-* Conditionally show child components using a ternary operator.
-* Create child components from an array of data using `.map()`.
-
-
-## Wat?
-
-* Why a simple Node server and not `webpack-dev-server`? Students seeing this repo for the first time are proficient with Node/Express. We've chosen to not throw out the concept of client/server even though we admittedly don't need a server here. We introduce `webpack-dev-server` later. Today we just want to focus on React concepts.
