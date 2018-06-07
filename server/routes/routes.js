@@ -46,10 +46,9 @@ router.get('/v2', (req, res) => {
 router.post('/v2', (req, res) => {
   const newScore = req.body
   db.addScore(newScore)
-    .then(scoreIds => {
-      console.log('scoreIds', scoreIds)
-      res.json({scoreIds: {id: scoreIds[0]}})
-    })
+    .then(score => {
+      res.sendStatus(201)
+    }) // sendStatus sets status as 201 and no body in response.
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })

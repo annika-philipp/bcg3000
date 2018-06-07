@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test server.test
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test server
 
 PATH: 
   /Users/annika/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -6406,7 +6406,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c jest server.test
+  Arguments: -c jest server
   Directory: /Users/annika/workspace/bootcamp/bcg3000
   Output:
   
