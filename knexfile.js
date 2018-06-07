@@ -9,19 +9,13 @@ module.exports = {
     },
     useNullAsDefault: true
   },
-
   test: {
     client: 'sqlite3',
     connection: {
       filename: ':memory:'
     },
-    // seeds: {
-    //   directory: './tests/seeds'
-    // },
     useNullAsDefault: true
   },
-
-
   production: {
     client: 'postgresql',
     connection: process.env.DATABASE_URL,
@@ -33,5 +27,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
-};
+}

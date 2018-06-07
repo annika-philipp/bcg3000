@@ -1,60 +1,57 @@
 const express = require('express')
-const server = require('../server')
 const bodyParser = require('body-parser')
 const router = express.Router()
 const db = require('../db/db')
 
-
 router.use(bodyParser.json())
 
 router.get('/v1', (req, res) => {
-    db.getQuestionsAndAnswers()
+  db.getQuestionsAndAnswers()
     .then(questions => {
-        let questionsList = []
-        for(var i = 0; i < questions.length; i=i+2) {
-            let question = questions[i]
-            let nextQuestion = questions[i+1]
-            let q = {
-                question: question.question,
-                question_id: question.question_id,
-                answers: [ 
-                    question.answer,
-                    nextQuestion.answer
-                ],
-                scores: [
-                    question.score,
-                    nextQuestion.score
-                ]
-            }
-            questionsList.push(q)
+      let questionsList = []
+      for (var i = 0; i < questions.length; i = i + 2) {
+        let question = questions[i]
+        let nextQuestion = questions[i + 1]
+        let q = {
+          question: question.question,
+          question_id: question.question_id,
+          answers: [
+            question.answer,
+            nextQuestion.answer
+          ],
+          scores: [
+            question.score,
+            nextQuestion.score
+          ]
         }
-
-        res.json(questionsList)
+        questionsList.push(q)
+      }
+      res.json(questionsList)
     })
     .catch(err => {
-        res.status(500).send('DATABASE ERROR: ' + err.message)
+      res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
 
 router.get('/v2', (req, res) => {
-    db.getScores()
+  db.getScores()
     .then(scores => {
-        res.json(scores)
+      res.json(scores)
     })
     .catch(err => {
-        res.status(500).send('DATABASE ERROR: ' + err.message)
+      res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
 
 router.post('/v2', (req, res) => {
-    const newScore = req.body
-    db.addScore(newScore)
+  const newScore = req.body
+  db.addScore(newScore)
     .then(scoreIds => {
-        console.log("scoreIds", scoreIds)
-        res.json({scoreIds: {id:scoreIds[0]}}) //what the what is going on here?
+      console.log('scoreIds', scoreIds)
+      res.json({scoreIds: {id: scoreIds[0]}})
     })
     .catch(err => {
-        res.status(500).send('DATABASE ERROR: ' + err.message)
+      res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
 
