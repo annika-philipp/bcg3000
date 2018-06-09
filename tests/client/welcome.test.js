@@ -4,6 +4,9 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 import Welcome from '../../client/components/Welcome'
 
+test('Test suite working', () => {
+  expect(true).toBeTruthy
+})
 
 test('Text renders on Welcome', () => {
   const wrapper = shallow(<Welcome />)

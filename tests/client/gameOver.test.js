@@ -4,6 +4,9 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 import GameOver from '../../client/components/GameOver'
 
+test('Test suite working', () => {
+  expect(true).toBeTruthy
+})
 
 test('Text renders on GameOver', () => {
   const wrapper = shallow(<GameOver />)

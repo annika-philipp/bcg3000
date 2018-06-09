@@ -4,6 +4,9 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 import Scoreboard from '../../client/components/Scoreboard'
 
+test('Test suite working', () => {
+  expect(true).toBeTruthy
+})
 
 test('Text renders on Scoreboard', () => {
   const topScores = [
