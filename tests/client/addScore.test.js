@@ -70,34 +70,7 @@ test('handleChange adds to state', () => {
   expect(actual).toEqual(expected)
 })
 
-// test works but throws a callback error - investigate!
-// test('addScore gets called on submit', () => {
-//   const topScores = [
-//     {score: 100, name: 'Ben'},
-//     {score: 110, name: 'Maddy'}
-//   ]
-
-//   const initialState = {
-//     name: 'Ben',
-//     score: 100,
-//     isTopScore: true
-//   }
-//   const expected = {
-//     ...initialState
-//   }
-//   const e = {
-//     preventDefault: () => ({})
-//   }
-//   const wrapper = shallow(<AddScore topScores={topScores} />)
-//   wrapper.instance().render = () => <div></div>
-//   wrapper.instance().state = initialState
-//   wrapper.instance().addScore(e)
-
-//   const actual = wrapper.instance().state
-//   expect(actual).toEqual(expected)
-// })
-
-test('render <ScoreBoard /> components', () => {
+test('render <ScoreBoard /> component', () => {
   const topScores = [
     {score: 100, name: 'Ben'},
     {score: 110, name: 'Maddy'}

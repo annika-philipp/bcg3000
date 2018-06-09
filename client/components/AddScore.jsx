@@ -23,7 +23,7 @@ class AddScore extends React.Component {
 
   addScore (e) {
     e.preventDefault()
-    addScoreApi(this.state, this.props.refreshScores)
+    addScoreApi(this.state, this.props.refreshScores())
   }
 
   render () {

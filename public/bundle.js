@@ -18816,7 +18816,7 @@ var AddScore = function (_React$Component) {
     key: 'addScore',
     value: function addScore(e) {
       e.preventDefault();
-      (0, _api.addScoreApi)(this.state, this.props.refreshScores);
+      (0, _api.addScoreApi)(this.state, this.props.refreshScores());
     }
   }, {
     key: 'render',
