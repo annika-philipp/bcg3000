@@ -8,7 +8,7 @@
     "postinstall": "webpack && knex migrate:latest",
     "dev": "nodemon --watch server & webpack --watch",
     "start": "node server/index",
-    "test": "jest",
+    "test": "jest --watch",
     "watch": "nodemon -e js,jsx -x npm test",
     "h:deploy": "git push heroku master",
     "h:migrate": "heroku run knex migrate:latest",
@@ -21,6 +21,9 @@
       "env",
       "react"
     ]
+  },
+  "jest": {
+    "collectCoverage": true
   },
   "keywords": [],
   "author": "Annika Philipp",
@@ -42,6 +45,8 @@
     "webpack": "^3.10.0"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.4.3",
     "nodemon": "^1.14.12",
     "sqlite3": "^3.1.13",
