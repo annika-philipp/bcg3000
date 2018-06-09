@@ -1,5 +1,5 @@
 /* global beforeEach afterEach test expect */
-const testEnv = require('../test-environment')
+const testEnv = require('./test-environment')
 const db = require('../../server/db/db')
 
 let testDb = null
@@ -61,4 +61,11 @@ test('getQuestionsAndAnswers gets the first answer to question 1', () => {
       expect(actual).toBe(expected)
     })
     .catch(err => expect(err).toBeNull())
+})
+
+test('addScore adds new score to db', () => {
+  const data = {name: 'Ross', score: 100}
+  return db.addScore(data, testDb)
+    .then(actual => expect(actual).toBeFalsy())
+    .catch(err => expect(err).toBeTruthy())
 })
