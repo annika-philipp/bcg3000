@@ -18459,7 +18459,7 @@ var App = function (_React$Component) {
       this.setState({
         beforeGame: false,
         gamePlaying: true,
-        gameOver: false,
+        // gameOver: false,
         isTopScore: false
       });
     }
@@ -18467,7 +18467,7 @@ var App = function (_React$Component) {
     key: 'gameOver',
     value: function gameOver() {
       this.setState({
-        beforeGame: false,
+        // beforeGame: false,
         gamePlaying: false,
         gameOver: true
       });

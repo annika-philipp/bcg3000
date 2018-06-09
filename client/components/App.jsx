@@ -70,14 +70,12 @@ class App extends React.Component {
     this.setState({
       beforeGame: false,
       gamePlaying: true,
-      gameOver: false,
       isTopScore: false
     })
   }
 
   gameOver () {
     this.setState({
-      beforeGame: false,
       gamePlaying: false,
       gameOver: true
     })
