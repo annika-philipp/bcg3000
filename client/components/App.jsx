@@ -31,7 +31,6 @@ class App extends React.Component {
     this.resetGame = this.resetGame.bind(this)
     this.getScores = this.getScores.bind(this)
     this.saveScores = this.saveScores.bind(this)
-    this.checkScore = this.checkScore.bind(this)
     this.checkIfTopScore = this.checkIfTopScore.bind(this)
     this.refreshScores = this.refreshScores.bind(this)
   }
@@ -90,11 +89,7 @@ class App extends React.Component {
     this.setState({
       topScores: topScoresApi
     })
-    this.checkScore()
-  }
-
-  checkScore () {
-    getScoresApi(this.checkIfTopScore)
+    this.checkIfTopScore()
   }
 
   checkIfTopScore (topScoresApi) {

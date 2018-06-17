@@ -18413,7 +18413,6 @@ var App = function (_React$Component) {
     _this.resetGame = _this.resetGame.bind(_this);
     _this.getScores = _this.getScores.bind(_this);
     _this.saveScores = _this.saveScores.bind(_this);
-    _this.checkScore = _this.checkScore.bind(_this);
     _this.checkIfTopScore = _this.checkIfTopScore.bind(_this);
     _this.refreshScores = _this.refreshScores.bind(_this);
     return _this;
@@ -18482,12 +18481,7 @@ var App = function (_React$Component) {
       this.setState({
         topScores: topScoresApi
       });
-      this.checkScore();
-    }
-  }, {
-    key: 'checkScore',
-    value: function checkScore() {
-      (0, _api.getScoresApi)(this.checkIfTopScore);
+      this.checkIfTopScore();
     }
   }, {
     key: 'checkIfTopScore',
