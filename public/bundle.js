@@ -981,6 +981,7 @@ function getScoresApi(callback) {
 
 function addScoreApi(score, callback) {
   _superagent2.default.post(scores).send(score).end(function (err, res) {
+    // console.log('res from addScoreApi ', res)
     callback(res);
   });
 }

@@ -75,6 +75,36 @@ test('render <ScoreBoard /> component', () => {
     {score: 100, name: 'Ben'},
     {score: 110, name: 'Maddy'}
   ]
-  const wrapper = shallow(<AddScore topScores={topScores} />)
+  const wrapper = mount(<AddScore topScores={topScores} />)
   expect(wrapper.find(ScoreBoard)).toHaveLength(1)
 })
+
+test('addScore gets called on submit', () => {
+  const topScores = [
+    {score: 100, name: 'Ben'},
+    {score: 110, name: 'Maddy'}
+  ]
+
+  const initialState = {
+    name: 'Ben',
+    score: 100,
+    isTopScore: true
+  }
+  const expected = {
+    ...initialState
+  }
+  const refreshScores = jest.fn()
+  const e = {
+    preventDefault: () => ({})
+  }
+
+  const wrapper = shallow(<AddScore topScores={topScores} refreshScores={refreshScores}/>)
+  wrapper.instance().render = () => <div></div>
+  wrapper.instance().state = initialState
+  wrapper.instance().addScore(e)
+
+  const actual = wrapper.instance().state
+  expect(actual).toEqual(expected)
+})
+
+

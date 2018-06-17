@@ -35,6 +35,7 @@ export function addScoreApi (score, callback) {
     .post(scores)
     .send(score)
     .end((err, res) => {
+      // console.log('res from addScoreApi ', res)
       callback(res)
     })
 }
