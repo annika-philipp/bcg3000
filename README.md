@@ -4,5 +4,5 @@ bcg3000 is a questions/answer game based on our experience as students of EDA. A
 
 * Written with React, Knex.js, Express.js, Node.js 
 
-* This is the first version of my game and has become a training ground for experimenting with new software. bcg-redux is the same game but re-written with react/redux. I am currently working on both a ruby version as well a react-native version.
+* This is the first version of my game and has become a training ground for experimenting with new software. bcg-redux is the same game but re-written with react/redux. I am currently working on both a ruby version as well a react-native version (done).
 
